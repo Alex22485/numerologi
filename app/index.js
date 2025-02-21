@@ -6,15 +6,16 @@ export default function App() {
     // container располагается на всю ширину экрана т.к. не имеет ширины
     <View>
       <Text style={styles.title1}>Свойство у контейнера:</Text>
-      <Text style={styles.title2}>flexDirection: "column"</Text>
+      <Text style={styles.title2}>1. flexDirection: "column"</Text>
 
-      <Text style={styles.text}>alignItems: "stretch" - по умолчанию</Text>
+      <Text style={styles.text}> - alignItems: "stretch" - по умолчанию</Text>
       <View style={{ backgroundColor: "#F7E2F7", alignItems: "stretch" }}>
         <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
         <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
         <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
       </View>
-      <Text style={styles.text}>Первый ViewItem не имеет ширину</Text>
+
+      <Text style={styles.text}> - Первый ViewItem не имеет ширину</Text>
       <View style={{ backgroundColor: "#F7E2F7", alignItems: "stretch" }}>
         <View style={{ backgroundColor: "tomato", height: 15 }} />
         <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
@@ -22,7 +23,7 @@ export default function App() {
       </View>
 
       <Text style={styles.text}>
-        alignItems: "flex-start первый item без ширины"
+        - alignItems: "flex-start первый item без ширины"
       </Text>
       <View style={{ backgroundColor: "#F7E2F7", alignItems: "flex-start" }}>
         <View style={{ backgroundColor: "tomato", height: 15 }} />
@@ -31,7 +32,7 @@ export default function App() {
       </View>
 
       <Text style={styles.text}>
-        alignItems: "flex-start первый item без ширины НО с содержимым"
+        - alignItems: "flex-start первый item без ширины НО с содержимым"
       </Text>
       <View style={{ backgroundColor: "#F7E2F7", alignItems: "flex-start" }}>
         <View style={{ backgroundColor: "tomato", height: 15 }}>
@@ -41,14 +42,14 @@ export default function App() {
         <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
       </View>
 
-      <Text style={styles.text}>alignItems: "center"</Text>
+      <Text style={styles.text}> - alignItems: "center"</Text>
       <View style={{ backgroundColor: "#F7E2F7", alignItems: "center" }}>
         <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
         <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
         <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
       </View>
 
-      <Text style={styles.text}>alignItems: "flex-end"</Text>
+      <Text style={styles.text}> - alignItems: "flex-end"</Text>
       <View style={{ backgroundColor: "#F7E2F7", alignItems: "flex-end" }}>
         <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
         <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
@@ -56,7 +57,7 @@ export default function App() {
       </View>
 
       <View style={styles.ViewBtn}>
-        <Link href={"/flexdirectionRow"}>
+        <Link href={"/justifyContent"}>
           <Text style={{ color: "white" }}>Перейти на другую страницу</Text>
         </Link>
       </View>
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     textAlign: "center",
+    fontWeight: "400",
   },
   ViewBtn: {
     marginTop: 20,
