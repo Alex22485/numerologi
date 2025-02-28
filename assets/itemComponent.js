@@ -1,13 +1,14 @@
 import { Text, View } from "react-native";
 
 export default function ItemComponent({
+  flexDirection = "column",
   alignItems = "strech",
-  justifyContent = "center",
+  justifyContent = "flex-start",
   width = true,
   height = "",
   isText = false,
 }) {
-  console.log("alignItems: ", alignItems);
+  console.log("flexDirection: ", flexDirection);
   const styleOnerow = width
     ? { backgroundColor: "tomato", width: 15, height: 15 }
     : { backgroundColor: "tomato", height: 15 };
@@ -22,6 +23,7 @@ export default function ItemComponent({
     <>
       <View
         style={{
+          flexDirection: flexDirection,
           backgroundColor: "#F7E2F7",
           alignItems: alignItems,
           justifyContent: justifyContent,

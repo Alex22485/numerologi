@@ -3,16 +3,11 @@ import { Link } from "expo-router";
 import BtnComponent from "../assets/btnComponent";
 import ItemComponent from "../assets/itemComponent";
 
-export default function JustifyContent() {
+export default function flexdirectionColumn_justifyContent() {
   return (
     <View>
-      <Text style={styles.title1}>Свойство у контейнера:</Text>
-      <Text style={styles.title2}>flexDirection: "column"</Text>
-
-      <View style={styles.ViewBtn}>
-        <BtnComponent LinkBtn={"/"} textBtn={"alignItems"} />
-        <BtnComponent LinkBtn={"/justifyContent"} textBtn={"justifyContent"} />
-      </View>
+      <Text style={styles.title2}>flexDirection: "Column"</Text>
+      <Text style={styles.title2}>justifyContent: </Text>
 
       <Text style={styles.text}> flex-start</Text>
       <ItemComponent justifyContent={"flex-start"} height={70} />

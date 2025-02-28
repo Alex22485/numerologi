@@ -14,11 +14,11 @@ export default function BtnComponent({ LinkBtn, textBtn }) {
 
 const styles = StyleSheet.create({
   ViewBtn_item: {
-    width: "30%",
+    width: "45%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#887088",
-    height: 48,
+    height: 30,
     borderWidth: 2,
     borderRadius: 5,
     borderColor: "black",
