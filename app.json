@@ -22,9 +22,10 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "plugins": ["expo-router"],
-    "sheme": "app_theory_Flex_e_t_c"
+    "scheme": "app_theory_Flex_e_t_c"
   }
 }

@@ -1,102 +1,53 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
+import BtnComponent from "../assets/btnComponent";
+import ItemComponent from "../assets/itemComponent";
 
 export default function JustifyContent() {
   return (
     <View>
-      <Text style={styles.title}>justifyContent:</Text>
-      <Text style={styles.text}> flex-start</Text>
-      <View
-        style={{
-          backgroundColor: "#F7E2F7",
-          justifyContent: "flex-start",
-          height: 70,
-        }}
-      >
-        <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
-      </View>
-
-      <Text style={styles.text}> center</Text>
-      <View
-        style={{
-          backgroundColor: "#F7E2F7",
-          justifyContent: "center",
-          height: 70,
-        }}
-      >
-        <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
-      </View>
-
-      <Text style={styles.text}> flex-end</Text>
-      <View
-        style={{
-          backgroundColor: "#F7E2F7",
-          justifyContent: "flex-end",
-          height: 70,
-        }}
-      >
-        <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
-      </View>
-
-      <Text style={styles.text}> space-around</Text>
-      <View
-        style={{
-          backgroundColor: "#F7E2F7",
-          justifyContent: "space-around",
-          height: 70,
-        }}
-      >
-        <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
-      </View>
-
-      <Text style={styles.text}> space-between</Text>
-      <View
-        style={{
-          backgroundColor: "#F7E2F7",
-          justifyContent: "space-between",
-          height: 70,
-        }}
-      >
-        <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
-      </View>
-
-      <Text style={styles.text}> space-evenly</Text>
-      <View
-        style={{
-          backgroundColor: "#F7E2F7",
-          justifyContent: "space-evenly",
-          height: 70,
-        }}
-      >
-        <View style={{ backgroundColor: "tomato", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "purple", width: 15, height: 15 }} />
-        <View style={{ backgroundColor: "green", width: 15, height: 15 }} />
-      </View>
+      <Text style={styles.title1}>Свойство у контейнера:</Text>
+      <Text style={styles.title2}>flexDirection: "column"</Text>
 
       <View style={styles.ViewBtn}>
-        <Link href={"/flexdirectionRow"}>
-          <Text style={{ color: "white" }}>На след страницу</Text>
-        </Link>
+        <BtnComponent LinkBtn={"/"} textBtn={"alignItems"} />
+        <BtnComponent LinkBtn={"/justifyContent"} textBtn={"justifyContent"} />
       </View>
+
+      <Text style={styles.text}> flex-start</Text>
+      <ItemComponent justifyContent={"flex-start"} height={70} />
+
+      <Text style={styles.text}> center</Text>
+      <ItemComponent justifyContent={"center"} height={70} />
+
+      <Text style={styles.text}> flex-end</Text>
+      <ItemComponent justifyContent={"flex-end"} height={70} />
+
+      <Text style={styles.text}> space-around</Text>
+      <ItemComponent justifyContent={"space-around"} height={70} />
+
+      <Text style={styles.text}> space-between</Text>
+      <ItemComponent justifyContent={"space-between"} height={70} />
+
+      <Text style={styles.text}> space-evenly</Text>
+      <ItemComponent justifyContent={"sspace-evenly"} height={70} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
+  title1: {
     marginTop: 5,
     textAlign: "center",
     fontSize: 20,
+    marginLeft: 40,
+    marginRight: 40,
+    fontWeight: "bold",
+  },
+  title2: {
+    marginTop: 5,
+    textAlign: "center",
+    fontSize: 18,
     marginLeft: 40,
     marginRight: 40,
     fontWeight: "bold",
@@ -118,5 +69,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 5,
     borderColor: "black",
+  },
+  ViewBtn: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
 });
