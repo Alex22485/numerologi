@@ -8,7 +8,6 @@ export default function ItemComponent({
   height = "",
   isText = false,
 }) {
-  console.log("flexDirection: ", flexDirection);
   const styleOnerow = width
     ? { backgroundColor: "tomato", width: 15, height: 15 }
     : { backgroundColor: "tomato", height: 15 };

@@ -12,8 +12,19 @@ export default function App() {
           textBtn={"FlexDirectioin:Column"}
         />
         <BtnComponent
-          LinkBtn={"/flexdirectionRow_alignItems"}
+          LinkBtn={"/flexDirectionRow"}
           textBtn={"FlexDirectioin:Row"}
+        />
+      </View>
+
+      <Text style={styles.title1}>Свойство у Детей:</Text>
+      <View style={{ marginTop: 20, alignItems: "center" }}>
+        <BtnComponent LinkBtn={"/flexGrow_row"} textBtn={"FlexGrow_row"} />
+      </View>
+      <View style={{ marginTop: 20, alignItems: "center" }}>
+        <BtnComponent
+          LinkBtn={"/flexGrow_column"}
+          textBtn={"FlexGrow_column"}
         />
       </View>
     </View>
@@ -22,7 +33,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   title1: {
-    marginTop: 5,
+    marginTop: 15,
     textAlign: "center",
     fontSize: 20,
     marginLeft: 40,
