@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
-import BtnComponent from "../assets/btnComponent";
-import ItemComponent from "../assets/itemComponent";
+import ItemComponent from "../../assets/itemComponent";
 
 export default function flexdirectionColumn_justifyContent() {
   return (

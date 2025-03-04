@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import BtnComponent from "../assets/btnComponent";
+import BtnComponent from "../../assets/btnComponent";
 
 export default function flexDirectioinRow() {
   return (

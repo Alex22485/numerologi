@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import ItemComponent from "../assets/itemComponent";
+import ItemComponent from "../../assets/itemComponent";
 
 export default function flexdirectionRow_justifyContent() {
   return (

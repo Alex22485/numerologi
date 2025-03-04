@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet } from "react-native";
-import ItemComponent from "../assets/itemComponent";
-import BtnComponent from "../assets/btnComponent";
+import ItemComponent from "../../assets/itemComponent";
+import BtnComponent from "../../assets/btnComponent";
 
 export default function flexdirectionRow_alignItems() {
   return (
