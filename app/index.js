@@ -13,8 +13,6 @@ export default function App() {
     }, 3000);
   }, []);
 
-  // {timeView &&  <Auth />}
-
   if (timeView) {
     return <Auth />;
   }
