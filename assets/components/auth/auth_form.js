@@ -1,4 +1,12 @@
-import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  alert,
+} from "react-native";
 import { Title } from "../../../components/tokens";
 import TextInputItem from "./textInputItem";
 import Auth_Btn from "./auth_btn";
@@ -8,27 +16,49 @@ const heightWindow = Dimensions.get("window").height;
 const widthWindow = Dimensions.get("window").width;
 
 export default function Auth_form() {
+  const arrPlaceHolder = ["Ваше Имя", "Телефон +7...", "Email", "Password"];
+
   const [isFocus, setIsFocus] = useState("");
-  const arrPlaceHolder = ["Ваше Имя", "Телефон", "Email", "Password"];
+  const [valueForm, setValueForm] = useState({});
+
   const isFocusHandler = (placeholderRef) => {
     setIsFocus(placeholderRef);
+  };
+  const changeHandler = (placeholder, value) => {
+    setValueForm((prevItem) => {
+      return { ...prevItem, [placeholder]: value };
+    });
+  };
+
+  const onPressBtn = () => {
+    console.log("fff", valueForm);
   };
   return (
     <View style={styles.conteiner_form}>
       <View style={styles.form}>
-        {arrPlaceHolder.map((item) => {
+        {arrPlaceHolder.map((item, index) => {
           return (
             <TextInputItem
               key={item}
               placeholder={item}
               isFocus={isFocus}
               heightWindow={heightWindow}
-              OnIsFocusHandler={isFocusHandler}
+              onIsFocusHandler={isFocusHandler}
+              onChangeHandler={changeHandler}
+              inputMode={
+                index === 0
+                  ? "text"
+                  : index === 1
+                  ? "tel"
+                  : index === 2
+                  ? "email"
+                  : "none"
+              }
             />
           );
         })}
       </View>
-      <Auth_Btn heightWindow={heightWindow} />
+      <Auth_Btn onPressHandler={onPressBtn} heightWindow={heightWindow} />
     </View>
   );
 }

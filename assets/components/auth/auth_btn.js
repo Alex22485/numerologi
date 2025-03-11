@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import {
   Btn,
   BtnDisable,
@@ -6,11 +6,20 @@ import {
   Text_App,
 } from "../../../components/tokens";
 
-export default function Auth_Btn({ heightWindow }) {
+export default function Auth_Btn({ heightWindow, onPressHandler }) {
   return (
     <View style={styles.Btn}>
       <View style={{ ...styles.Btn_CreateUser, height: heightWindow * 0.052 }}>
-        <Text style={styles.Btn_CreateUser_text}>Создать аккаунт</Text>
+        <TouchableOpacity>
+          <Text
+            onPress={() => {
+              onPressHandler();
+            }}
+            style={styles.Btn_CreateUser_text}
+          >
+            Создать аккаунт
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.Btn_ForgotUser}>
         <Text style={styles.Btn_ForgotUser_text}>Уже зарегистрированы? </Text>

@@ -3,14 +3,21 @@ import { Color, Input_Text, Title } from "../../../components/tokens";
 
 export default function TextInputItem({
   placeholder,
+  inputMode,
   heightWindow,
   isFocus,
-  OnIsFocusHandler,
+  onIsFocusHandler,
+  onChangeHandler,
 }) {
   const widthBorder = placeholder === isFocus ? 2 : 0;
 
+  const probaHandle = (placeholder, target) => {
+    // console.log(placeholder, target);
+    onChangeHandler(placeholder, target);
+  };
   return (
     <TextInput
+      inputMode={inputMode}
       placeholder={placeholder}
       placeholderTextColor={"#A686A6"}
       style={{
@@ -18,8 +25,12 @@ export default function TextInputItem({
         height: heightWindow * 0.052,
         borderWidth: widthBorder,
       }}
-      onFocus={() => OnIsFocusHandler(placeholder)}
-      onBlur={() => console.log("onBlur")}
+      onFocus={() => onIsFocusHandler(placeholder)}
+      // onChange={({ target }) => onChangeHandler(placeholder, target.value)}
+      onChange={(e) => {
+        // return console.log(e.nativeEvent.text);
+        return probaHandle(placeholder, e.nativeEvent.text);
+      }}
     />
   );
 }
