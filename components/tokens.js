@@ -13,6 +13,7 @@ export const Text_App = {
 
 export const Color = {
   dark_purple: "#361F36",
+  red: "#D31D1A",
 };
 
 export const Input_Text = {

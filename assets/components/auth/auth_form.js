@@ -16,14 +16,17 @@ const heightWindow = Dimensions.get("window").height;
 const widthWindow = Dimensions.get("window").width;
 
 export default function Auth_form() {
-  const arrPlaceHolder = ["Ваше Имя", "Телефон +7...", "Email", "Password"];
-
-  const [isFocus, setIsFocus] = useState("");
-  const [valueForm, setValueForm] = useState({});
-
-  const isFocusHandler = (placeholderRef) => {
-    setIsFocus(placeholderRef);
+  const arrPlaceHolder = ["Ваше Имя:", "Телефон: +7...", "Email:", "Пароль:"];
+  const firstState = {
+    "Ваше Имя:": "",
+    "Телефон: +7...": "",
+    "Email:": "",
+    "Пароль:": "",
   };
+
+  const [valueForm, setValueForm] = useState(firstState);
+  console.log("valueForm: ", valueForm);
+
   const changeHandler = (placeholder, value) => {
     setValueForm((prevItem) => {
       return { ...prevItem, [placeholder]: value };
@@ -40,10 +43,9 @@ export default function Auth_form() {
           return (
             <TextInputItem
               key={item}
+              valueForm={valueForm}
               placeholder={item}
-              isFocus={isFocus}
               heightWindow={heightWindow}
-              onIsFocusHandler={isFocusHandler}
               onChangeHandler={changeHandler}
               inputMode={
                 index === 0
