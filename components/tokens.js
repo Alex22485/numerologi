@@ -26,18 +26,23 @@ export const Title = {
 
 export const Btn = {
   br: 10,
-  color_white: "white",
+  // color_white: "white",
 };
 export const BtnDisable = {
   bgColor: "#CBB171",
   color_gray: "#948C8C",
-  bg_opacity: 0.6,
+  bg_opacity_06: 0.6,
 };
 export const BtnEnable = {
-  bgColor: "#ffffff",
+  bgColor: "#5E4B1B",
+  bg_opacity_1: 1,
+  color_white: "#FFFFFF",
 };
 export const Btn_ForgotUser = {};
 
 export const BgColor = {
-  bgColor: "#A686A6",
+  bgColor: "#B791B7",
+  // bgColor: "#9E6F9E",
+  // bgColor: "#B27AB2",
+  // bgColor: "#A686A6",
 };

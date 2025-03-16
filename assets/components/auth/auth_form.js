@@ -1,13 +1,4 @@
-import {
-  Alert,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  alert,
-} from "react-native";
-import { Title } from "../../../components/tokens";
+import { Dimensions, StyleSheet, View } from "react-native";
 import TextInputItem from "./textInputItem";
 import Auth_Btn from "./auth_btn";
 import { useState } from "react";
@@ -16,16 +7,16 @@ const heightWindow = Dimensions.get("window").height;
 const widthWindow = Dimensions.get("window").width;
 
 export default function Auth_form() {
-  const arrPlaceHolder = ["Ваше Имя:", "Телефон: +7...", "Email:", "Пароль:"];
+  const arrPlaceHolder = ["Ваше Имя:", "Телефон: +7", "Email:", "Пароль:"];
   const firstState = {
     "Ваше Имя:": "",
-    "Телефон: +7...": "",
+    "Телефон: +7": "",
     "Email:": "",
     "Пароль:": "",
   };
 
   const [valueForm, setValueForm] = useState(firstState);
-  console.log("valueForm: ", valueForm);
+  // console.log("valueForm: ", valueForm);
 
   const changeHandler = (placeholder, value) => {
     setValueForm((prevItem) => {
@@ -34,7 +25,7 @@ export default function Auth_form() {
   };
 
   const onPressBtn = () => {
-    console.log("fff", valueForm);
+    // console.log("Press");
   };
   return (
     <View style={styles.conteiner_form}>
@@ -54,31 +45,37 @@ export default function Auth_form() {
                   ? "tel"
                   : index === 2
                   ? "email"
-                  : "none"
+                  : "text"
               }
             />
           );
         })}
+        <View>
+          <View style={styles.auth_Btn}>
+            <Auth_Btn
+              onPressHandler={onPressBtn}
+              heightWindow={heightWindow}
+              OnValueForm={valueForm}
+            />
+          </View>
+        </View>
       </View>
-      <Auth_Btn onPressHandler={onPressBtn} heightWindow={heightWindow} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   conteiner_form: {
-    marginTop: heightWindow * 0.084,
-    height: heightWindow * 0.467,
+    // marginTop: heightWindow * 0.084,
+    marginTop: heightWindow * 0.05,
+    height: heightWindow * 0.476,
     width: widthWindow * 0.86,
     justifyContent: "space-between",
   },
   form: {
     height: heightWindow * 0.303,
-    justifyContent: "space-between",
   },
-  form_inputText: {
-    height: heightWindow * 0.052,
-    backgroundColor: Title.color_white,
-    borderRadius: 4,
+  auth_Btn: {
+    marginTop: heightWindow * 0.0869,
   },
 });

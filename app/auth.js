@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    marginTop: 39,
+    marginTop: heightWindow * 0.0418,
     textAlign: "center",
     fontSize: Text_App.fs_34,
     fontFamily: Text_App.ff,

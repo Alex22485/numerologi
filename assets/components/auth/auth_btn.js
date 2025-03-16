@@ -5,27 +5,46 @@ import {
   BtnEnable,
   Text_App,
 } from "../../../components/tokens";
+import { styleBtn } from "./styleBtn";
 
-export default function Auth_Btn({ heightWindow, onPressHandler }) {
+export default function Auth_Btn({
+  heightWindow,
+  onPressHandler,
+  OnValueForm,
+}) {
   return (
     <View style={styles.Btn}>
-      <View style={{ ...styles.Btn_CreateUser, height: heightWindow * 0.052 }}>
-        <TouchableOpacity>
+      <TouchableOpacity
+        disabled={styleBtn(OnValueForm)[0] ? false : true}
+        onPress={() => {
+          onPressHandler();
+        }}
+      >
+        <View
+          style={{
+            ...styles.Btn_CreateUser,
+            height: heightWindow * 0.052,
+            opacity: styleBtn(OnValueForm)[1],
+          }}
+        >
           <Text
-            onPress={() => {
-              onPressHandler();
+            style={{
+              ...styles.Btn_CreateUser_text,
+              color: styleBtn(OnValueForm)[2],
             }}
-            style={styles.Btn_CreateUser_text}
           >
             Создать аккаунт
           </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.Btn_ForgotUser}>
-        <Text style={styles.Btn_ForgotUser_text}>Уже зарегистрированы? </Text>
-        <View style={styles.Btn_ForgotUser_Btn}>
-          <Text style={styles.Btn_ForgotUser_Btn_text}>Войти</Text>
         </View>
+      </TouchableOpacity>
+
+      <View style={styles.conteiner_AlreadyAuth}>
+        <Text style={styles.conteiner_AlreadyAuth_text}>
+          Уже зарегистрированы?{"   "}
+        </Text>
+        <TouchableOpacity>
+          <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -35,7 +54,6 @@ const styles = StyleSheet.create({
   Btn: {},
   Btn_CreateUser: {
     backgroundColor: BtnDisable.bgColor,
-    opacity: BtnDisable.bg_opacity,
     borderRadius: Btn.br,
     justifyContent: "center",
   },
@@ -47,17 +65,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: BtnDisable.color_gray,
   },
-  Btn_ForgotUser: {
+  conteiner_AlreadyAuth: {
     marginTop: 8,
     flexDirection: "row",
     justifyContent: "flex-end",
   },
-  Btn_ForgotUser_text: {
+  conteiner_AlreadyAuth_text: {
     fontSize: Text_App.fs_13,
     fontWeight: Text_App.fw_bold,
   },
-  Btn_ForgotUser_Btn: {},
-  Btn_ForgotUser_Btn_text: {
+
+  conteiner_AlreadyAuth_btn: {
     fontSize: Text_App.fs_13,
     fontWeight: Text_App.fw_bold,
     color: BtnEnable.bgColor,
