@@ -21,7 +21,8 @@ export const Input_Text = {
 };
 
 export const Title = {
-  color_white: "white",
+  color_white: "#FFFFFF",
+  color_burgandy: "#361F36",
 };
 
 export const Btn = {
@@ -42,6 +43,7 @@ export const Btn_ForgotUser = {};
 
 export const BgColor = {
   bgColor: "#B791B7",
+  bg_white: "#FFFFFF",
   // bgColor: "#9E6F9E",
   // bgColor: "#B27AB2",
   // bgColor: "#A686A6",
