@@ -2,7 +2,7 @@ import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
-import Auth from "./auth";
+import Auth from "./auth/auth";
 
 export default function App() {
   const [timeView, SetTimeView] = useState(false);
