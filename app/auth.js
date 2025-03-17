@@ -1,15 +1,6 @@
 import { View, Text, StyleSheet, TextInput, Dimensions } from "react-native";
-import {
-  BgColor,
-  BtnDisable,
-  Title,
-  Btn,
-  Btn_ForgotUser_text,
-  BtnEnable,
-  Btn_ForgotUser,
-  Text_App,
-} from "../components/tokens";
-import Auth_form from "../assets/components/auth/auth_form";
+import { Title, Text_App, BgColor } from "../components/tokens";
+import Auth_form from "./auth/auth_form";
 
 const heightWindow = Dimensions.get("window").height;
 const widthWindow = Dimensions.get("window").width;

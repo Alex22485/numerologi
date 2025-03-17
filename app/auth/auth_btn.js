@@ -1,10 +1,5 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import {
-  Btn,
-  BtnDisable,
-  BtnEnable,
-  Text_App,
-} from "../../../components/tokens";
+import { Btn, BtnDisable, BtnEnable, Text_App } from "../../components/tokens";
 import { styleBtn } from "./styleBtn";
 
 export default function Auth_Btn({

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { Color, Input_Text, Title } from "../../../components/tokens";
+import { Color, Input_Text, Title } from "../../components/tokens";
 import { useState } from "react";
 import { colorBorder } from "./colorBorder";
 

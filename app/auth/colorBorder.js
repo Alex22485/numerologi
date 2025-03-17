@@ -1,4 +1,4 @@
-import { Color } from "../../../components/tokens";
+import { Color } from "../../components/tokens";
 
 export const colorBorder = (
   valueForm,

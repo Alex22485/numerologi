@@ -1,4 +1,4 @@
-import { BtnDisable, BtnEnable } from "../../../components/tokens";
+import { BtnDisable, BtnEnable } from "../../components/tokens";
 
 export const styleBtn = (OnValueForm) => {
   const btnIsActiv = Object.values(OnValueForm)
