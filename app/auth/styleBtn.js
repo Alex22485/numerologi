@@ -1,6 +1,6 @@
 import { BtnDisable, BtnEnable } from "../../components/tokens";
 
-export const styleBtn = (OnValueForm) => {
+const styleBtn = (OnValueForm) => {
   const btnIsActiv = Object.values(OnValueForm)
     .map((i) => i.length)
     .every((el) => el > 0);
@@ -14,3 +14,4 @@ export const styleBtn = (OnValueForm) => {
     : BtnDisable.color_gray;
   return [btnIsActiv, btnOpacity, btnTextColor];
 };
+export default styleBtn;

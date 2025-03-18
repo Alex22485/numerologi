@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Btn, BtnDisable, BtnEnable, Text_App } from "../../components/tokens";
-import { styleBtn } from "./styleBtn";
+import styleBtn from "./styleBtn";
+import { Link } from "expo-router";
 
 export default function Auth_Btn({
   heightWindow,
@@ -37,8 +38,11 @@ export default function Auth_Btn({
         <Text style={styles.conteiner_AlreadyAuth_text}>
           Уже зарегистрированы?{"   "}
         </Text>
+
         <TouchableOpacity>
-          <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
+          <Link href={"/code_verification/input_code_verification"}>
+            <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
+          </Link>
         </TouchableOpacity>
       </View>
     </View>

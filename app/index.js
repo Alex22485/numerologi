@@ -14,7 +14,17 @@ export default function App() {
   }, []);
 
   if (timeView) {
-    return <Auth />;
+    return (
+      <>
+        <Auth />
+        <Link href={"/code_verification/input_code_verification"}>
+          <View>
+            <Text style={{ height: 50, backgroundColor: "pink" }}>ff</Text>
+          </View>
+        </Link>
+      </>
+    );
+    // return <Auth />;
   }
   return (
     <View style={styles.container}>
@@ -22,12 +32,6 @@ export default function App() {
         style={styles.img}
         source={require("../assets/FirsPicturePage.png")}
       ></Image>
-
-      {/* {timeView && (
-        <Link href={"/Auth"}>
-          <Text>ghhfjgfh</Text>
-        </Link>
-      )}  */}
     </View>
   );
 }

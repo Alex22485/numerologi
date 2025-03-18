@@ -1,11 +1,6 @@
 import { Color } from "../../components/tokens";
 
-export const colorBorder = (
-  valueForm,
-  placeholder,
-  setBorder,
-  onFocus = false
-) => {
+const colorBorder = (valueForm, placeholder, setBorder, onFocus = false) => {
   // Темная рамка у активного TextInput
   if (onFocus) {
     return setBorder({
@@ -30,3 +25,5 @@ export const colorBorder = (
     }
   }
 };
+
+export default colorBorder;
