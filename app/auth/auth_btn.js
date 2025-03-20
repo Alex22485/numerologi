@@ -1,5 +1,18 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { Btn, BtnDisable, BtnEnable, Text_App } from "../../components/tokens";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  Animated,
+} from "react-native";
+import {
+  Btn,
+  Btn_AlreadyAuth_text,
+  BtnDisable,
+  BtnEnable,
+  Text_App,
+} from "../../components/tokens";
 import styleBtn from "./styleBtn";
 import { Link } from "expo-router";
 
@@ -8,15 +21,37 @@ export default function Auth_Btn({
   onPressHandler,
   OnValueForm,
 }) {
+  const animatedValue = new Animated.Value(100);
+  const color = animatedValue.interpolate({
+    inputRange: [0, 100],
+    outputRange: [BtnEnable.bgColor, Btn_AlreadyAuth_text.text_Color],
+  });
+
+  const OnBtnPressIn = () => {
+    Animated.timing(animatedValue, {
+      toValue: 0,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+  };
+  const OnBtnPressOut = () => {
+    Animated.timing(animatedValue, {
+      toValue: 100,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+  };
   return (
     <View style={styles.Btn}>
       <TouchableOpacity
         disabled={styleBtn(OnValueForm)[0] ? false : true}
+        onPressIn={OnBtnPressIn}
+        onPressOut={OnBtnPressOut}
         onPress={() => {
           onPressHandler();
         }}
       >
-        <View
+        <Animated.View
           style={{
             ...styles.Btn_CreateUser,
             height: heightWindow * 0.052,
@@ -31,7 +66,7 @@ export default function Auth_Btn({
           >
             Создать аккаунт
           </Text>
-        </View>
+        </Animated.View>
       </TouchableOpacity>
 
       <View style={styles.conteiner_AlreadyAuth}>
@@ -39,11 +74,30 @@ export default function Auth_Btn({
           Уже зарегистрированы?{"   "}
         </Text>
 
-        <TouchableOpacity>
-          <Link href={"/code_verification/input_code_verification"}>
-            <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
-          </Link>
+        <TouchableOpacity
+          onPressIn={OnBtnPressIn}
+          onPressOut={OnBtnPressOut}
+          onPress={() => console.log("Proba")}
+        >
+          {/* <Link href={"/code_verification/input_code_verification"}> */}
+          <Animated.View>
+            <Text
+              style={{
+                ...styles.conteiner_AlreadyAuth_btn,
+                backgroundColor: color,
+              }}
+            >
+              Войти
+            </Text>
+          </Animated.View>
+          {/* </Link> */}
         </TouchableOpacity>
+
+        {/* <Link href={"/code_verification/input_code_verification"}>
+          <Pressable onPress={() => console.log("Proba")}>
+            <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
+          </Pressable>
+        </Link> */}
       </View>
     </View>
   );
@@ -77,6 +131,6 @@ const styles = StyleSheet.create({
   conteiner_AlreadyAuth_btn: {
     fontSize: Text_App.fs_13,
     fontWeight: Text_App.fw_bold,
-    color: BtnEnable.bgColor,
+    // color: BtnEnable.bgColor,
   },
 });

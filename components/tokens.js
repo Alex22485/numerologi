@@ -38,7 +38,9 @@ export const BtnEnable = {
   bg_opacity_1: 1,
   color_white: "#FFFFFF",
 };
-export const Btn_ForgotUser = {};
+export const Btn_AlreadyAuth_text = {
+  text_Color: "#FFFFFF",
+};
 
 export const BgColor = {
   bgColor: "#B791B7",
