@@ -26,6 +26,7 @@ export const Title = {
 
 export const Btn = {
   br: 10,
+  btnHover: "#9C9891",
   // color_white: "white",
 };
 export const BtnDisable = {
@@ -34,7 +35,8 @@ export const BtnDisable = {
   bg_opacity_06: 0.6,
 };
 export const BtnEnable = {
-  bgColor: "#5E4B1B",
+  // bgColor: "#5E4B1B",
+  bgColor: "#CBB171",
   bg_opacity_1: 1,
   color_white: "#FFFFFF",
 };
