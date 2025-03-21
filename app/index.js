@@ -1,8 +1,16 @@
 import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import Auth from "./auth";
+import { BgColor } from "../components/tokens";
 
 export default function App() {
   const [timeView, SetTimeView] = useState(false);
@@ -14,7 +22,19 @@ export default function App() {
   }, []);
 
   if (timeView) {
-    return <Auth />;
+    return (
+      <>
+        {/* <Link href={`${probaList}`}><Auth /></Link> */}
+        <Auth />
+        {/* <TouchableOpacity
+          onPress={() => {
+            setProbaList("/code_Verification/input_code_verification");
+          }}
+        >
+          <Text>ghf</Text>
+        </TouchableOpacity> */}
+      </>
+    );
   }
   return (
     <View style={styles.container}>

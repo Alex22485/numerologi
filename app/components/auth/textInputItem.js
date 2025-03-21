@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Color, Input_Text, Title } from "../../../components/tokens";
 import { useState } from "react";
-import { colorBorder } from "./colorBorder";
+import colorBorder from "./colorBorder";
 
 export default function TextInputItem({
   valueForm,

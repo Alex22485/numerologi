@@ -9,15 +9,21 @@ import {
   Btn_ForgotUser,
   Text_App,
 } from "../components/tokens";
-import Auth_form from "../assets/components/auth/auth_form";
+import Auth_form from "./components/auth/auth_form";
+import { Link } from "expo-router";
+import { useState } from "react";
 
 const heightWindow = Dimensions.get("window").height;
 const widthWindow = Dimensions.get("window").width;
 
 export default function Auth() {
+  // const ProbaHandler = () => {
+  //   OnPr();
+  // };
   return (
     <View style={styles.content}>
       <Text style={styles.title}>Авторизация</Text>
+
       <Auth_form />
     </View>
   );

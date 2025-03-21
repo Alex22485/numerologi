@@ -6,7 +6,7 @@ import { useState } from "react";
 const heightWindow = Dimensions.get("window").height;
 const widthWindow = Dimensions.get("window").width;
 
-export default function Auth_form() {
+export default function Auth_form({ Proba }) {
   const arrPlaceHolder = ["Ваше Имя:", "Телефон: +7", "Email:", "Пароль:"];
   const firstState = {
     "Ваше Имя:": "",
@@ -25,7 +25,7 @@ export default function Auth_form() {
   };
 
   const onPressBtn = () => {
-    // console.log("Press");
+    // Proba();
   };
   return (
     <View style={styles.conteiner_form}>

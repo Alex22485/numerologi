@@ -5,7 +5,7 @@ import {
   BtnEnable,
   Text_App,
 } from "../../../components/tokens";
-import { styleBtn } from "./styleBtn";
+import styleBtn from "./styleBtn";
 
 export default function Auth_Btn({
   heightWindow,
