@@ -25,36 +25,34 @@ export default function TextInputItem({
   };
 
   return (
-    <>
-      <View style={{ height: heightWindow * 0.0858 }}>
-        <TextInput
-          cursorColor={Color.dark_purple}
-          inputMode={inputMode}
-          placeholder={placeholder}
-          placeholderTextColor={"#A686A6"}
-          style={{
-            ...styles.form_inputText,
-            height: heightWindow * 0.052,
-            borderWidth: border.width,
-            borderColor: border.color,
-            fontSize: heightWindow * 0.018,
-          }}
-          onFocus={() => onFocusHandler()}
-          onBlur={() => onBlurHandler()}
-          // для сбора информации из TextInput в один объект
-          onChange={(e) => {
-            return onChangeHandler(placeholder, e.nativeEvent.text);
-          }}
-        />
-        {border.isTextMistakes && (
-          <View style={{ height: heightWindow * 0.0343 }}>
-            <Text style={{ ...styles.textMistakes }}>
-              поле не должно быть пустым
-            </Text>
-          </View>
-        )}
-      </View>
-    </>
+    <View style={{ height: heightWindow * 0.0858 }}>
+      <TextInput
+        cursorColor={Color.dark_purple}
+        inputMode={inputMode}
+        placeholder={placeholder}
+        placeholderTextColor={"#A686A6"}
+        style={{
+          ...styles.form_inputText,
+          height: heightWindow * 0.052,
+          borderWidth: border.width,
+          borderColor: border.color,
+          fontSize: heightWindow * 0.018,
+        }}
+        onFocus={() => onFocusHandler()}
+        onBlur={() => onBlurHandler()}
+        // для сбора информации из TextInput в один объект
+        onChange={(e) => {
+          return onChangeHandler(placeholder, e.nativeEvent.text);
+        }}
+      />
+      {border.isTextMistakes && (
+        <View style={{ height: heightWindow * 0.0343 }}>
+          <Text style={{ ...styles.textMistakes }}>
+            поле не должно быть пустым
+          </Text>
+        </View>
+      )}
+    </View>
   );
 }
 const styles = StyleSheet.create({

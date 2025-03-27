@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { BgColor, Text_App, Title } from "../../../components/tokens";
 
-export default function input_code_verification() {
+export default function Input_code_verification() {
   return (
     <View style={styles.content}>
       <Text style={styles.title}>Верификация</Text>

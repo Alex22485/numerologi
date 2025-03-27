@@ -6,7 +6,7 @@ import { useState } from "react";
 const heightWindow = Dimensions.get("window").height;
 const widthWindow = Dimensions.get("window").width;
 
-export default function Auth_form({ Proba }) {
+export default function Auth_form({ onPressAuth }) {
   const arrPlaceHolder = ["Ваше Имя:", "Телефон: +7", "Email:", "Пароль:"];
   const firstState = {
     "Ваше Имя:": "",
@@ -16,7 +16,6 @@ export default function Auth_form({ Proba }) {
   };
 
   const [valueForm, setValueForm] = useState(firstState);
-  // console.log("valueForm: ", valueForm);
 
   const changeHandler = (placeholder, value) => {
     setValueForm((prevItem) => {
@@ -25,7 +24,7 @@ export default function Auth_form({ Proba }) {
   };
 
   const onPressBtn = () => {
-    // Proba();
+    onPressAuth(valueForm);
   };
   return (
     <View style={styles.conteiner_form}>

@@ -22,19 +22,7 @@ export default function App() {
   }, []);
 
   if (timeView) {
-    return (
-      <>
-        {/* <Link href={`${probaList}`}><Auth /></Link> */}
-        <Auth />
-        {/* <TouchableOpacity
-          onPress={() => {
-            setProbaList("/code_Verification/input_code_verification");
-          }}
-        >
-          <Text>ghf</Text>
-        </TouchableOpacity> */}
-      </>
-    );
+    return <Auth />;
   }
   return (
     <View style={styles.container}>
@@ -42,12 +30,6 @@ export default function App() {
         style={styles.img}
         source={require("../assets/FirsPicturePage.png")}
       ></Image>
-
-      {/* {timeView && (
-        <Link href={"/Auth"}>
-          <Text>ghhfjgfh</Text>
-        </Link>
-      )}  */}
     </View>
   );
 }

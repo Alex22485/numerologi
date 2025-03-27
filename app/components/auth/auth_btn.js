@@ -27,57 +27,55 @@ export default function Auth_Btn({
   const onPressBtnIn = () => {
     Animated.timing(animatedBtn, {
       toValue: 0,
-      duration: 100,
+      duration: 50,
       useNativeDriver: true,
     }).start();
   };
   const onPressBtnOut = () => {
     Animated.timing(animatedBtn, {
       toValue: 100,
-      duration: 1,
+      duration: 50,
       useNativeDriver: true,
     }).start();
   };
   return (
-    <>
-      <View style={styles.Btn}>
-        <Pressable
-          onPressIn={onPressBtnIn}
-          onPressOut={onPressBtnOut}
-          disabled={styleBtn(OnValueForm)[0] ? false : true}
-          onPress={() => {
-            onPressHandler();
+    <View style={styles.Btn}>
+      <Pressable
+        onPressIn={onPressBtnIn}
+        onPressOut={onPressBtnOut}
+        disabled={styleBtn(OnValueForm)[0] ? false : true}
+        onPress={() => {
+          onPressHandler();
+        }}
+      >
+        <Animated.View
+          style={{
+            ...styles.Btn_CreateUser,
+            backgroundColor: color,
+            height: heightWindow * 0.052,
           }}
         >
-          <Animated.View
+          <Text
             style={{
-              ...styles.Btn_CreateUser,
-              backgroundColor: color,
-              height: heightWindow * 0.052,
-              // opacity: styleBtn(OnValueForm)[1],
+              ...styles.Btn_CreateUser_text,
+              color: styleBtn(OnValueForm)[2],
             }}
           >
-            <Text
-              style={{
-                ...styles.Btn_CreateUser_text,
-                color: styleBtn(OnValueForm)[2],
-              }}
-            >
-              Создать аккаунт
-            </Text>
-          </Animated.View>
-        </Pressable>
-        // Изначальный код
-        <View style={styles.conteiner_AlreadyAuth}>
-          <Text style={styles.conteiner_AlreadyAuth_text}>
-            Уже зарегистрированы?{"   "}
+            Создать аккаунт
           </Text>
-          <TouchableOpacity>
-            <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
-          </TouchableOpacity>
-        </View>
+        </Animated.View>
+      </Pressable>
+      <View style={styles.conteiner_AlreadyAuth}>
+        <Text style={styles.conteiner_AlreadyAuth_text}>
+          Уже зарегистрированы?{"   "}
+        </Text>
+        <Pressable onPressIn={() => {}} onPressOut={() => {}}>
+          <Animated.Text style={{ ...styles.conteiner_AlreadyAuth_btn }}>
+            Войти
+          </Animated.Text>
+        </Pressable>
       </View>
-    </>
+    </View>
   );
 }
 
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
     color: BtnDisable.color_gray,
   },
   conteiner_AlreadyAuth: {
-    marginTop: 8,
+    marginTop: 28,
     flexDirection: "row",
     justifyContent: "flex-end",
   },
