@@ -1,3 +1,8 @@
+import { Dimensions } from "react-native";
+
+export const heightWindow = Dimensions.get("window").height;
+export const widthWindow = Dimensions.get("window").width;
+
 export const Text_App = {
   ff: "Inter",
   fw_medium: "Medium",
@@ -5,6 +10,9 @@ export const Text_App = {
   fw_bold: "bold",
   fs_34: 34,
   fs_19: 19,
+  fs_20: 20,
+  fs_17: 17,
+  fs_15: 15,
   fs_13: 13,
 
   ls_minus_41: -0.41,

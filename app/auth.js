@@ -1,11 +1,8 @@
-import { View, Text, StyleSheet, TextInput, Dimensions } from "react-native";
-import { BgColor, BtnDisable, Title, Text_App } from "../components/tokens";
+import { View, Text, StyleSheet } from "react-native";
+import { BgColor, Title, Text_App, heightWindow } from "../components/tokens";
 import Auth_form from "./components/auth/auth_form";
 import Input_code_verification from "./components/code_Verification/input_code_verification";
 import { useState } from "react";
-
-const heightWindow = Dimensions.get("window").height;
-// const widthWindow = Dimensions.get("window").width;
 
 export default function Auth() {
   const [getCodeVerif, setGetCodeVerif] = useState({
@@ -14,8 +11,7 @@ export default function Auth() {
   });
 
   const onPressHandler = (inputValue) => {
-    // console.log("inputValue: ", inputValue);
-    setGetCodeVerif({ readyGetCode: true, inputAuthData: { inputValue } });
+    setGetCodeVerif({ readyGetCode: true, inputAuthData: inputValue });
   };
 
   const authForm = (
@@ -24,8 +20,6 @@ export default function Auth() {
       <Auth_form onPressAuth={onPressHandler} />
     </View>
   );
-  console.log("getCodeVerif", getCodeVerif);
-
   return getCodeVerif.readyGetCode ? (
     <Input_code_verification inputDataAuth={getCodeVerif.inputAuthData} />
   ) : (

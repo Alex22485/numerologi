@@ -10,15 +10,12 @@ import {
   Btn,
   BtnDisable,
   BtnEnable,
+  heightWindow,
   Text_App,
 } from "../../../components/tokens";
 import styleBtn from "./styleBtn";
 
-export default function Auth_Btn({
-  heightWindow,
-  onPressHandler,
-  OnValueForm,
-}) {
+export default function Auth_Btn({ onPressHandler, OnValueForm }) {
   const animatedBtn = new Animated.Value(100);
   const color = animatedBtn.interpolate({
     inputRange: [0, 100],
@@ -52,7 +49,6 @@ export default function Auth_Btn({
           style={{
             ...styles.Btn_CreateUser,
             backgroundColor: color,
-            height: heightWindow * 0.052,
           }}
         >
           <Text
@@ -69,11 +65,19 @@ export default function Auth_Btn({
         <Text style={styles.conteiner_AlreadyAuth_text}>
           Уже зарегистрированы?{"   "}
         </Text>
-        <Pressable onPressIn={() => {}} onPressOut={() => {}}>
-          <Animated.Text style={{ ...styles.conteiner_AlreadyAuth_btn }}>
-            Войти
-          </Animated.Text>
-        </Pressable>
+        <TouchableOpacity
+          onPress={() => {
+            console.log("press");
+          }}
+          onPressIn={() => {
+            console.log("In");
+          }}
+          onPressOut={() => {
+            console.log("out");
+          }}
+        >
+          <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -82,7 +86,7 @@ export default function Auth_Btn({
 const styles = StyleSheet.create({
   Btn: {},
   Btn_CreateUser: {
-    // backgroundColor: BtnDisable.bgColor,
+    height: heightWindow * 0.052,
     borderRadius: Btn.br,
     justifyContent: "center",
   },
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
     color: BtnDisable.color_gray,
   },
   conteiner_AlreadyAuth: {
-    marginTop: 28,
+    marginTop: heightWindow * 0.0086,
     flexDirection: "row",
     justifyContent: "flex-end",
   },
@@ -110,40 +114,3 @@ const styles = StyleSheet.create({
     color: BtnEnable.bgColor,
   },
 });
-
-{
-  /* <Text
-            style={{
-              ...styles.Btn_CreateUser_text,
-              color: styleBtn(OnValueForm)[2],
-            }}
-          >
-            Создать аккаунт
-          </Text> */
-}
-
-{
-  /* <TouchableOpacity
-        disabled={styleBtn(OnValueForm)[0] ? false : true}
-        onPress={() => {
-          onPressHandler();
-        }}
-      >
-        <View
-          style={{
-            ...styles.Btn_CreateUser,
-            height: heightWindow * 0.052,
-            opacity: styleBtn(OnValueForm)[1],
-          }}
-        >
-          <Text
-            style={{
-              ...styles.Btn_CreateUser_text,
-              color: styleBtn(OnValueForm)[2],
-            }}
-          >
-            Создать аккаунт
-          </Text>
-        </View>
-      </TouchableOpacity> */
-}

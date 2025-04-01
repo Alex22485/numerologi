@@ -1,12 +1,16 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { Color, Input_Text, Title } from "../../../components/tokens";
+import {
+  Color,
+  heightWindow,
+  Input_Text,
+  Title,
+} from "../../../components/tokens";
 import { useState } from "react";
 import colorBorder from "./colorBorder";
 
 export default function TextInputItem({
   valueForm,
   placeholder,
-  heightWindow,
   onChangeHandler,
   inputMode,
 }) {
@@ -33,10 +37,8 @@ export default function TextInputItem({
         placeholderTextColor={"#A686A6"}
         style={{
           ...styles.form_inputText,
-          height: heightWindow * 0.052,
           borderWidth: border.width,
           borderColor: border.color,
-          fontSize: heightWindow * 0.018,
         }}
         onFocus={() => onFocusHandler()}
         onBlur={() => onBlurHandler()}
@@ -57,6 +59,8 @@ export default function TextInputItem({
 }
 const styles = StyleSheet.create({
   form_inputText: {
+    height: heightWindow * 0.052,
+    fontSize: heightWindow * 0.018,
     backgroundColor: Title.color_white,
     borderRadius: 4,
     paddingLeft: Input_Text.margin_left_22,

@@ -1,16 +1,8 @@
 import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import Auth from "./auth";
-import { BgColor } from "../components/tokens";
 
 export default function App() {
   const [timeView, SetTimeView] = useState(false);
@@ -42,7 +34,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   img: {
-    // width: 300,
+    // положение и размер картинки на экране
+    marginTop: -50,
     height: "70%",
     resizeMode: "contain",
   },

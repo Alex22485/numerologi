@@ -2,9 +2,7 @@ import { Dimensions, StyleSheet, View } from "react-native";
 import TextInputItem from "./textInputItem";
 import Auth_Btn from "./auth_btn";
 import { useState } from "react";
-
-const heightWindow = Dimensions.get("window").height;
-const widthWindow = Dimensions.get("window").width;
+import { heightWindow, widthWindow } from "../../../components/tokens";
 
 export default function Auth_form({ onPressAuth }) {
   const arrPlaceHolder = ["Ваше Имя:", "Телефон: +7", "Email:", "Пароль:"];
@@ -35,7 +33,6 @@ export default function Auth_form({ onPressAuth }) {
               key={item}
               valueForm={valueForm}
               placeholder={item}
-              heightWindow={heightWindow}
               onChangeHandler={changeHandler}
               inputMode={
                 index === 0
@@ -51,11 +48,7 @@ export default function Auth_form({ onPressAuth }) {
         })}
         <View>
           <View style={styles.auth_Btn}>
-            <Auth_Btn
-              onPressHandler={onPressBtn}
-              heightWindow={heightWindow}
-              OnValueForm={valueForm}
-            />
+            <Auth_Btn onPressHandler={onPressBtn} OnValueForm={valueForm} />
           </View>
         </View>
       </View>
@@ -65,7 +58,6 @@ export default function Auth_form({ onPressAuth }) {
 
 const styles = StyleSheet.create({
   conteiner_form: {
-    // marginTop: heightWindow * 0.084,
     marginTop: heightWindow * 0.05,
     height: heightWindow * 0.476,
     width: widthWindow * 0.86,
