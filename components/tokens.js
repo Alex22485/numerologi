@@ -12,8 +12,10 @@ export const Text_App = {
   fs_19: 19,
   fs_20: 20,
   fs_17: 17,
+  fs_16: 16,
   fs_15: 15,
   fs_13: 13,
+  fs_10: 12,
 
   ls_minus_41: -0.41,
   ls_037: 0.37,
