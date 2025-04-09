@@ -5,15 +5,16 @@ import {
   Text_App,
   widthWindow,
 } from "../../../components/tokens";
+import Module_inputCode_autoFocus from "./module_inputCode_autoFocus";
 
 export default function Module_inputCode({ inputDataAuth }) {
-  const codeVerification = [
-    { index: 1, digit: "" },
-    { index: 2, digit: "" },
-    { index: 3, digit: "" },
-    { index: 4, digit: "" },
-    { index: 5, digit: "" },
-  ];
+  // const codeVerification = [
+  //   { index: 1, digit: "" },
+  //   { index: 2, digit: "" },
+  //   { index: 3, digit: "" },
+  //   { index: 4, digit: "" },
+  //   { index: 5, digit: "" },
+  // ];
   return (
     <View style={styles.content}>
       <Image
@@ -25,7 +26,8 @@ export default function Module_inputCode({ inputDataAuth }) {
         <Text style={styles.textView_h3}>Мы отправили письмо на</Text>
         <Text style={styles.textView_h3}>{inputDataAuth["Email:"]}</Text>
       </View>
-      <View style={styles.inputCodeContent}>
+      <Module_inputCode_autoFocus />
+      {/* <View style={styles.inputCodeContent}>
         {codeVerification.map((item) => {
           return (
             <TextInput
@@ -36,7 +38,7 @@ export default function Module_inputCode({ inputDataAuth }) {
             ></TextInput>
           );
         })}
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -66,12 +68,12 @@ const styles = StyleSheet.create({
     fontWeight: Text_App.fw_Semibold,
     color: Color.dark_purple,
   },
-  inputCodeContent: {
-    width: widthWindow * 0.86,
-    height: heightWindow * 0.065,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
+  // inputCodeContent: {
+  //   width: widthWindow * 0.86,
+  //   height: heightWindow * 0.065,
+  //   flexDirection: "row",
+  //   justifyContent: "space-between",
+  // },
   textInput: {
     width: widthWindow * 0.156,
     textAlign: "center",

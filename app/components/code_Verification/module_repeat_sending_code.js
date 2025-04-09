@@ -13,14 +13,14 @@ export default function Module_repeat_sending_code() {
   useEffect(() => {
     if (valueSecond !== 0) {
       const interval = setInterval(() => {
-        console.log("таймер");
+        // console.log("таймер");
         setValueSecond((item) => {
-          console.log("item: ", item);
+          // console.log("item: ", item);
           return item - 1;
         });
       }, 1000);
       return () => {
-        console.log("очистка");
+        // console.log("очистка");
         clearInterval(interval);
       };
     }
