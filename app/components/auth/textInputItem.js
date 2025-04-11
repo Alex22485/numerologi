@@ -43,9 +43,16 @@ export default function TextInputItem({
         onFocus={() => onFocusHandler()}
         onBlur={() => onBlurHandler()}
         // для сбора информации из TextInput в один объект
-        onChange={(e) => {
-          return onChangeHandler(placeholder, e.nativeEvent.text);
+        onChangeText={(e) => {
+          console.log("e: ", e);
+          return onChangeHandler(placeholder, e);
         }}
+        // !!!Загуглить отличие onChange от onChangeText
+        // onChange={(e) => {
+        //   console.log("e: ", e);
+        //   // console.log("t: ", e.nativeEvent.text);
+        //   return onChangeHandler(placeholder, e.nativeEvent.text);
+        // }}
       />
       {border.isTextMistakes && (
         <View style={{ height: heightWindow * 0.0343 }}>

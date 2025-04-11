@@ -7,14 +7,10 @@ import {
 } from "../../../components/tokens";
 import Module_inputCode_autoFocus from "./module_inputCode_autoFocus";
 
-export default function Module_inputCode({ inputDataAuth }) {
-  // const codeVerification = [
-  //   { index: 1, digit: "" },
-  //   { index: 2, digit: "" },
-  //   { index: 3, digit: "" },
-  //   { index: 4, digit: "" },
-  //   { index: 5, digit: "" },
-  // ];
+export default function Module_inputCode({
+  inputDataAuth,
+  OnCodeVerifUserInput,
+}) {
   return (
     <View style={styles.content}>
       <Image
@@ -26,19 +22,11 @@ export default function Module_inputCode({ inputDataAuth }) {
         <Text style={styles.textView_h3}>Мы отправили письмо на</Text>
         <Text style={styles.textView_h3}>{inputDataAuth["Email:"]}</Text>
       </View>
-      <Module_inputCode_autoFocus />
-      {/* <View style={styles.inputCodeContent}>
-        {codeVerification.map((item) => {
-          return (
-            <TextInput
-              key={item.index}
-              inputMode={"tel"}
-              maxLength={1}
-              style={styles.textInput}
-            ></TextInput>
-          );
-        })}
-      </View> */}
+      <Module_inputCode_autoFocus
+        codeVerifUserInput={(code, index) => {
+          OnCodeVerifUserInput(code, index);
+        }}
+      />
     </View>
   );
 }

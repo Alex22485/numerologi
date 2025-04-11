@@ -6,7 +6,9 @@ import {
   widthWindow,
 } from "../../../components/tokens";
 
-export default function Module_inputCode_autoFocus() {
+export default function Module_inputCode_autoFocus({ codeVerifUserInput }) {
+  //   const [inputCode, setInputCode] = useState("");
+
   const firstRef = useRef();
   const secondRef = useRef();
   const thirdRef = useRef();
@@ -32,13 +34,13 @@ export default function Module_inputCode_autoFocus() {
             maxLength={1}
             style={styles.textInput}
             onChangeText={(i) => {
-              if (!i) return;
+              if (!i) return; // н понятно зачем это написал
               if (item.index === 5) {
                 Keyboard.dismiss();
-                console.log("Пять");
+                codeVerifUserInput(i, item.index);
                 return;
               }
-              console.log(item.index);
+              codeVerifUserInput(i, item.index);
               item.nextRef.current.focus();
             }}
           ></TextInput>
