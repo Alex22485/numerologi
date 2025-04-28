@@ -44,7 +44,7 @@ export default function TextInputItem({
         onBlur={() => onBlurHandler()}
         // для сбора информации из TextInput в один объект
         onChangeText={(e) => {
-          console.log("e: ", e);
+          // console.log("e: ", e);
           return onChangeHandler(placeholder, e);
         }}
         // !!!Загуглить отличие onChange от onChangeText

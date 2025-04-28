@@ -25,6 +25,8 @@ export const Color = {
   dark_purple: "#361F36",
   red: "#D31D1A",
   brown: "#CBB171",
+  beige: "#EDE8DB",
+  dark_Pink: "#EC1EE8",
 };
 
 export const Input_Text = {
