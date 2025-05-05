@@ -6,6 +6,7 @@ import {
   widthWindow,
 } from "../../../components/tokens";
 import Module_inputCode_autoFocus from "./module_inputCode_autoFocus";
+import ModuleSuccessCode from "./moduleSuccessCode";
 
 export default function Module_inputCode({
   inputDataAuth,
@@ -18,7 +19,7 @@ export default function Module_inputCode({
         source={require("../../../assets/verification_layout/lock.png")}
       />
       <View style={styles.textView}>
-        <Text style={styles.textView_h2}>Код верификации</Text>
+        <Text style={styles.textView_h2}>Код авторизации</Text>
         <Text style={styles.textView_h3}>Мы отправили письмо на</Text>
         <Text style={styles.textView_h3}>{inputDataAuth["Email:"]}</Text>
       </View>

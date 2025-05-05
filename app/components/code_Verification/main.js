@@ -3,55 +3,49 @@ import Module_repeat_sending_code from "./module_repeat_sending_code";
 import Module_btnTitle from "./module_btnTitle";
 import Module_Image_Process_load from "./module_Image_Process_load";
 import { useEffect, useState } from "react";
+import ModuleSuccessCode from "./moduleSuccessCode";
 
-export default function Main({ inputDataAuth }) {
+export default function Main({
+  inputDataAuth,
+  onCodeAuth,
+  codeSuccessHandler,
+}) {
+  // console.log("codeSuccessHandler: ", codeSuccessHandler);
   const [code, setIscode] = useState({
-    isShowLoad: false,
-    closeLoad: false,
-    opacity: false,
+    isShowLoadView: false,
   });
 
-  const [startAnim, setStartAnim] = useState(false);
-  console.log("startAnim: ", startAnim);
-
+  // Получение введенного кода верификации
   const coderef = (inputCode, index) => {
     setIscode((pr) => {
       return {
         ...pr,
-        isShowAlertCode: false,
-        translateY: 10,
-        opacity: index === 2 ? true : false,
         [index]: inputCode,
       };
     });
   };
+
   useEffect(() => {
-    setTimeout(() => {
-      // console.log("showAnim");
-      setStartAnim(true);
-    }, 5000);
-    setTimeout(() => {
-      // console.log("closeAnim");
-      setStartAnim(5);
-    }, 25000);
-  }, []);
-  useEffect(() => {
+    // console.log("useEffect");
     // Скрыть imageLoading
-    if (code.isShowLoad) {
+    if (code.isShowLoadView) {
       const checkCode = setTimeout(() => {
         setIscode((pr) => {
-          return { ...pr, isShowLoad: false, closeLoad: true };
+          return { ...pr, isShowLoadView: false };
         });
+        onCodeAuth(code);
       }, 4000);
-
       return () => {
         clearTimeout(checkCode);
       };
     }
-    // показать imageLoading
-    if (code[5] && !code.closeLoad) {
-      setIscode((pr) => {
-        return { ...pr, isShowLoad: true };
+    // Показать imageLoading
+    if (code[1] && code[2] && code[3] && code[4] && code[5]) {
+      setIscode(() => {
+        return {
+          code: code[1] + code[2] + code[3] + code[4] + code[5],
+          isShowLoadView: true,
+        };
       });
     }
   }, [code]);
@@ -64,7 +58,8 @@ export default function Main({ inputDataAuth }) {
         OnCodeVerifUserInput={coderef}
       />
       <Module_repeat_sending_code />
-      {code.isShowLoad && <Module_Image_Process_load />}
+      {code.isShowLoadView && <Module_Image_Process_load />}
+      <ModuleSuccessCode codeSuccessHandler={codeSuccessHandler} />
     </>
   );
 }

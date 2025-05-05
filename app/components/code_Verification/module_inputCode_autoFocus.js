@@ -36,6 +36,7 @@ export default function Module_inputCode_autoFocus({ codeVerifUserInput }) {
             onChangeText={(i) => {
               if (!i) return; // н понятно зачем это написал
               if (item.index === 5) {
+                // Скрыть клавиатуру
                 Keyboard.dismiss();
                 codeVerifUserInput(i, item.index);
                 return;

@@ -1,19 +1,43 @@
 import { StyleSheet, View } from "react-native";
 import { BgColor } from "../../../components/tokens";
-import { useEffect, useState } from "react";
-import Module_Alert_code_verif_ver2 from "./module_Alert_code_verif_ver2";
+import { useState } from "react";
 import Main from "./main";
 import Module_Alert_code_verif_ver3 from "./module_Alert_code_verif_ver3";
+import randomNumber from "./randomNumber";
 
-const VERIFICATIONCODE = Math.floor(Math.random() * 100000);
+const randomCode = randomNumber(10000, 100000);
+console.log("randomCode: ", randomCode);
 
 export default function Input_code_verification({ inputDataAuth }) {
-  const [startAnim, setStartAnim] = useState(false);
+  // const [isBlockAnimatedCode, setIsBlockAnimatedCode] = useState(false);
+  const [multiState, setMultiState] = useState({
+    isBlockAnimatedCode: false,
+    codeSuccess: "empty",
+  });
+
+  // Цвет фона серый/белый
+  const backgroundColor =
+    multiState.codeSuccess === "empty" ? BgColor.bg_white : BgColor.bg_gray;
+
+  // Код авторизации
+  const onCodeAuth = (code) => {
+    if (+code.code === randomCode) {
+      setMultiState({ codeSuccess: "Yes", isBlockAnimatedCode: true });
+    }
+    // setMultiState((prev)=>{return({...prev, isBlockAnimatedCode:true})});
+  };
 
   return (
-    <View style={styles.content}>
-      <Module_Alert_code_verif_ver3 />
-      <Main inputDataAuth={inputDataAuth} />
+    <View style={{ ...styles.content, backgroundColor: backgroundColor }}>
+      <Module_Alert_code_verif_ver3
+        isBlockAnimatedCodeHandler={multiState.isBlockAnimatedCode}
+        randomCode={randomCode}
+      />
+      <Main
+        inputDataAuth={inputDataAuth}
+        onCodeAuth={onCodeAuth}
+        codeSuccessHandler={multiState.codeSuccess}
+      />
     </View>
   );
 }
@@ -21,6 +45,5 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: BgColor.bg_white,
   },
 });

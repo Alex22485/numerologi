@@ -57,6 +57,8 @@ export const Btn_ForgotUser = {};
 
 export const BgColor = {
   bgColor: "#B791B7",
+  bg_white: "#ffffff",
+  bg_gray: "#9D9999",
   // bgColor: "#9E6F9E",
   // bgColor: "#B27AB2",
   // bgColor: "#A686A6",

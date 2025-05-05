@@ -15,7 +15,7 @@ export default function Module_btnTitle() {
           source={require("../../../assets/verification_layout/arrow_left.png")}
         />
       </View>
-      <Text style={styles.title}>Верификация</Text>
+      <Text style={styles.title}>Авторизация</Text>
     </View>
   );
 }
@@ -23,7 +23,8 @@ export default function Module_btnTitle() {
 const styles = StyleSheet.create({
   titleView: {
     // marginTop: heightWindow * 0.042,
-    marginTop: heightWindow * 0.0687,
+    // marginTop: heightWindow * 0.0687,
+    marginTop: heightWindow * 0.1202,
     height: heightWindow * 0.0397,
     width: widthWindow * 0.86,
     flexDirection: "row",
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginLeft: widthWindow * 0.17,
-    fontSize: Text_App.fs_15,
+    fontSize: Text_App.fs_17,
     fontFamily: Text_App.ff,
     fontWeight: Text_App.fw_Semibold,
     color: Color.dark_purple,

@@ -3,18 +3,27 @@
 import { Animated, StyleSheet, Text } from "react-native";
 import { widthWindow } from "../../../components/tokens";
 import { useEffect, useState } from "react";
+import randomNumber from "./randomNumber";
 
-export default function Module_Alert_code_verif_ver3({ startAnimatedCode }) {
-  const [isShowCode, setIsShowCode] = useState(false);
+export default function Module_Alert_code_verif_ver3({
+  isBlockAnimatedCodeHandler,
+  randomCode,
+}) {
+  // console.log("isBlockAnimatedCodeHandler", isBlockAnimatedCodeHandler);
+  const [isShowCode, setIsShowCode] = useState(isBlockAnimatedCodeHandler);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsShowCode(true);
-    }, 5000);
+    console.log("useEf");
+    if (!isBlockAnimatedCodeHandler) {
+      setTimeout(() => {
+        setIsShowCode(true);
+      }, 5000);
+    }
   }, []);
   const animatedTransform = new Animated.ValueXY({
     x: 0,
     y: -30,
+    // y: 0,
   });
 
   const animatedOpacity = new Animated.Value(100);
@@ -30,9 +39,6 @@ export default function Module_Alert_code_verif_ver3({ startAnimatedCode }) {
       useNativeDriver: useNativeDriver,
     }).start();
   };
-
-  funcAnimated(animatedTransform, { x: 0, y: 10 }, 200, true);
-  funcAnimated(animatedOpacity, 0, 15000, true);
 
   const layout = () => {
     funcAnimated(animatedTransform, { x: 0, y: 10 }, 200, true);
@@ -55,7 +61,7 @@ export default function Module_Alert_code_verif_ver3({ startAnimatedCode }) {
       }}
       onLayout={layout}
     >
-      <Text style={styles.contentText}> 5 4 7 8 5</Text>
+      <Text style={styles.contentText}>{randomCode}</Text>
     </Animated.View>
   );
 }
