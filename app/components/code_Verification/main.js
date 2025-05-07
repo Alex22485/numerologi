@@ -9,11 +9,17 @@ export default function Main({
   inputDataAuth,
   onCodeAuth,
   codeSuccessHandler,
+  OnCodeSuccessHandler,
 }) {
-  // console.log("codeSuccessHandler: ", codeSuccessHandler);
   const [code, setIscode] = useState({
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+    5: "",
     isShowLoadView: false,
   });
+  // console.log("code", code);
 
   // Получение введенного кода верификации
   const coderef = (inputCode, index) => {
@@ -26,7 +32,6 @@ export default function Main({
   };
 
   useEffect(() => {
-    // console.log("useEffect");
     // Скрыть imageLoading
     if (code.isShowLoadView) {
       const checkCode = setTimeout(() => {
@@ -56,8 +61,11 @@ export default function Main({
       <Module_inputCode
         inputDataAuth={inputDataAuth}
         OnCodeVerifUserInput={coderef}
+        codeSuccessHandler={codeSuccessHandler}
+        OnCodeSuccessHandler={OnCodeSuccessHandler}
+        codeHandler={code}
       />
-      <Module_repeat_sending_code />
+      <Module_repeat_sending_code codeSuccessHandler={codeSuccessHandler} />
       {code.isShowLoadView && <Module_Image_Process_load />}
       <ModuleSuccessCode codeSuccessHandler={codeSuccessHandler} />
     </>

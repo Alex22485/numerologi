@@ -7,7 +7,7 @@ import {
 } from "../../../components/tokens";
 import { useEffect, useState } from "react";
 
-export default function Module_repeat_sending_code() {
+export default function Module_repeat_sending_code({ codeSuccessHandler }) {
   const [valueSecond, setValueSecond] = useState(12);
 
   useEffect(() => {
@@ -25,6 +25,14 @@ export default function Module_repeat_sending_code() {
       };
     }
   }, [valueSecond]);
+
+  if (codeSuccessHandler === "No") {
+    return (
+      <View style={styles.contentView}>
+        <Text style={styles.text}> Пароль не верен</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.contentView}>
       <Text style={styles.text}> Не приходит письмо?</Text>

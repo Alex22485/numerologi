@@ -27,6 +27,7 @@ export const Color = {
   brown: "#CBB171",
   beige: "#EDE8DB",
   dark_Pink: "#EC1EE8",
+  white: "#ffffff",
 };
 
 export const Input_Text = {
@@ -59,6 +60,8 @@ export const BgColor = {
   bgColor: "#B791B7",
   bg_white: "#ffffff",
   bg_gray: "#9D9999",
+  bg_pink: "#FCDDFC",
+  bg_error: "#D31D1A",
   // bgColor: "#9E6F9E",
   // bgColor: "#B27AB2",
   // bgColor: "#A686A6",

@@ -6,12 +6,15 @@ import {
   widthWindow,
 } from "../../../components/tokens";
 import Module_inputCode_autoFocus from "./module_inputCode_autoFocus";
-import ModuleSuccessCode from "./moduleSuccessCode";
 
 export default function Module_inputCode({
   inputDataAuth,
   OnCodeVerifUserInput,
+  codeSuccessHandler,
+  OnCodeSuccessHandler,
+  codeHandler,
 }) {
+  // console.log("inputDataAuth", inputDataAuth);
   return (
     <View style={styles.content}>
       <Image
@@ -20,10 +23,15 @@ export default function Module_inputCode({
       />
       <View style={styles.textView}>
         <Text style={styles.textView_h2}>Код авторизации</Text>
-        <Text style={styles.textView_h3}>Мы отправили письмо на</Text>
-        <Text style={styles.textView_h3}>{inputDataAuth["Email:"]}</Text>
+        <Text style={styles.textView_h3}>
+          Мы отправили push уведомление на:
+        </Text>
+        <Text style={styles.textView_h3}>{inputDataAuth["Телефон: +7"]}</Text>
       </View>
       <Module_inputCode_autoFocus
+        codeHandler={codeHandler}
+        codeSuccessHandler={codeSuccessHandler}
+        OnCodeSuccessHandler={OnCodeSuccessHandler}
         codeVerifUserInput={(code, index) => {
           OnCodeVerifUserInput(code, index);
         }}
@@ -57,12 +65,7 @@ const styles = StyleSheet.create({
     fontWeight: Text_App.fw_Semibold,
     color: Color.dark_purple,
   },
-  // inputCodeContent: {
-  //   width: widthWindow * 0.86,
-  //   height: heightWindow * 0.065,
-  //   flexDirection: "row",
-  //   justifyContent: "space-between",
-  // },
+
   textInput: {
     width: widthWindow * 0.156,
     textAlign: "center",

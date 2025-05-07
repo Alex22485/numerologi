@@ -1,29 +1,21 @@
-// import { transform } from "@babel/core";
-// import { useEffect, useState } from "react";
-import { Animated, StyleSheet, Text } from "react-native";
+import { Animated, StyleSheet, Text, Vibration, View } from "react-native";
 import { widthWindow } from "../../../components/tokens";
 import { useEffect, useState } from "react";
-import randomNumber from "./randomNumber";
 
 export default function Module_Alert_code_verif_ver3({
   isBlockAnimatedCodeHandler,
   randomCode,
 }) {
-  // console.log("isBlockAnimatedCodeHandler", isBlockAnimatedCodeHandler);
-  const [isShowCode, setIsShowCode] = useState(isBlockAnimatedCodeHandler);
+  const [isShowCode, setIsShowCode] = useState(false);
 
   useEffect(() => {
-    console.log("useEf");
-    if (!isBlockAnimatedCodeHandler) {
-      setTimeout(() => {
-        setIsShowCode(true);
-      }, 5000);
-    }
+    setTimeout(() => {
+      setIsShowCode(true);
+    }, 5000);
   }, []);
   const animatedTransform = new Animated.ValueXY({
     x: 0,
     y: -30,
-    // y: 0,
   });
 
   const animatedOpacity = new Animated.Value(100);
@@ -44,11 +36,28 @@ export default function Module_Alert_code_verif_ver3({
     funcAnimated(animatedTransform, { x: 0, y: 10 }, 200, true);
     funcAnimated(animatedOpacity, 0, 15000, true);
   };
-
+  // Исчезновение анимации кода если код введен ыерно
+  if (isBlockAnimatedCodeHandler === true) {
+    return <></>;
+  }
+  // Отображение кода если код введен не верно
+  if (isBlockAnimatedCodeHandler === "error") {
+    return (
+      <View
+        style={{
+          ...styles.content,
+          transform: [{ translateX: 0 }, { translateY: 10 }],
+        }}
+      >
+        <Text style={styles.contentText}>{randomCode}</Text>
+      </View>
+    );
+  }
   if (!isShowCode) {
     return <></>;
   }
-
+  // Анимация отображения кода
+  Vibration.vibrate(100);
   return (
     <Animated.View
       style={{
@@ -65,7 +74,6 @@ export default function Module_Alert_code_verif_ver3({
     </Animated.View>
   );
 }
-
 const styles = StyleSheet.create({
   content: {
     position: "absolute",
@@ -74,7 +82,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 10,
     height: 30,
-    // backgroundColor: "#D31D1A",
     backgroundColor: "#4C0331",
     textAlign: "center",
   },
