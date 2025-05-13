@@ -28,6 +28,8 @@ export const Color = {
   beige: "#EDE8DB",
   dark_Pink: "#EC1EE8",
   white: "#ffffff",
+  green: "#79CF4E",
+  error: "#D31D1A",
 };
 
 export const Input_Text = {
@@ -61,6 +63,7 @@ export const BgColor = {
   bg_white: "#ffffff",
   bg_gray: "#9D9999",
   bg_pink: "#FCDDFC",
+  bg_dark_pink: "#A686A6",
   bg_error: "#D31D1A",
   // bgColor: "#9E6F9E",
   // bgColor: "#B27AB2",

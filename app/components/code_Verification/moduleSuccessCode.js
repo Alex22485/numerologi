@@ -1,12 +1,16 @@
-import { Animated, Image, StyleSheet, Text, View } from "react-native";
+import { Animated, Image, StyleSheet, Text } from "react-native";
 import {
   BgColor,
   heightWindow,
   Text_App,
   widthWindow,
 } from "../../../components/tokens";
+import { useEffect } from "react";
 
-export default function ModuleSuccessCode({ codeSuccessHandler }) {
+export default function ModuleSuccessCode({
+  codeSuccessHandler,
+  onIsShowQuickCodeView,
+}) {
   const animatedSuccessCodeVerif = new Animated.ValueXY({
     x: 0,
     y: heightWindow,
@@ -24,6 +28,13 @@ export default function ModuleSuccessCode({ codeSuccessHandler }) {
     return <></>;
   }
 
+  if (codeSuccessHandler === "Yes") {
+    setTimeout(() => {
+      onIsShowQuickCodeView(true);
+    }, 3000);
+  }
+
+  // Анимация "Регистрация успешна"
   return (
     <Animated.View
       style={{

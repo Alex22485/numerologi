@@ -7,7 +7,10 @@ import randomNumber from "./randomNumber";
 
 const randomCode = randomNumber(10000, 100000);
 
-export default function Input_code_verification({ inputDataAuth }) {
+export default function Input_code_verification({
+  inputDataAuth,
+  onIsShowQuickCodeView,
+}) {
   const [multiState, setMultiState] = useState({
     isBlockAnimatedCode: false,
     codeSuccess: "empty",
@@ -45,6 +48,7 @@ export default function Input_code_verification({ inputDataAuth }) {
         onCodeAuth={onCodeAuth}
         codeSuccessHandler={multiState.codeSuccess}
         OnCodeSuccessHandler={OnCodeSuccessHandler}
+        onIsShowQuickCodeView={onIsShowQuickCodeView}
       />
     </View>
   );

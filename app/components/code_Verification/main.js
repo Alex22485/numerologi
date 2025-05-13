@@ -10,6 +10,7 @@ export default function Main({
   onCodeAuth,
   codeSuccessHandler,
   OnCodeSuccessHandler,
+  onIsShowQuickCodeView,
 }) {
   const [code, setIscode] = useState({
     1: "",
@@ -67,7 +68,10 @@ export default function Main({
       />
       <Module_repeat_sending_code codeSuccessHandler={codeSuccessHandler} />
       {code.isShowLoadView && <Module_Image_Process_load />}
-      <ModuleSuccessCode codeSuccessHandler={codeSuccessHandler} />
+      <ModuleSuccessCode
+        codeSuccessHandler={codeSuccessHandler}
+        onIsShowQuickCodeView={onIsShowQuickCodeView}
+      />
     </>
   );
 }

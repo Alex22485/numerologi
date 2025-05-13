@@ -1,4 +1,4 @@
-import { Animated, Image, StyleSheet, View } from "react-native";
+import { Animated, Image, StyleSheet } from "react-native";
 import { heightWindow } from "../../../components/tokens";
 import Module_Image_Process_load_Animaing from "./module_Image_Process_load_Animaing";
 

@@ -3,12 +3,21 @@ import { BgColor, Title, Text_App, heightWindow } from "../components/tokens";
 import Auth_form from "./components/auth/auth_form";
 import Input_code_verification from "./components/code_Verification/input_code_verification";
 import { useState } from "react";
+import Quick_code from "./components/quick_code/quick_code";
+import Quick_code_ver2 from "./components/quick_code/quick_code_ver2";
 
 export default function Auth() {
   const [getCodeVerif, setGetCodeVerif] = useState({
     readyGetCode: false,
     inputAuthData: "",
+    isShowQuickCodeView: false,
   });
+  // console.log("getCodeVerif", getCodeVerif);
+  // console.log("ppppp", getCodeVerif.inputAuthData);
+  // console.log("ppppp", getCodeVerif.inputAuthData);
+  const rr = "Ваше Имя:";
+  console.log("00", getCodeVerif.inputAuthData);
+  console.log("11", getCodeVerif.inputAuthData["Ваше Имя:"]);
 
   const onPressHandler = (inputValue) => {
     setGetCodeVerif({ readyGetCode: true, inputAuthData: inputValue });
@@ -20,8 +29,25 @@ export default function Auth() {
       <Auth_form onPressAuth={onPressHandler} />
     </View>
   );
+
+  const onIsShowQuickCodeView = (item) => {
+    setGetCodeVerif((pr) => {
+      return { ...pr, isShowQuickCodeView: item };
+    });
+  };
+  if (getCodeVerif.isShowQuickCodeView) {
+    return (
+      <Quick_code_ver2
+        textContent={"Придумайте пароль быстрого входа"}
+        name={getCodeVerif.inputAuthData["Ваше Имя:"]}
+      />
+    );
+  }
   return getCodeVerif.readyGetCode ? (
-    <Input_code_verification inputDataAuth={getCodeVerif.inputAuthData} />
+    <Input_code_verification
+      inputDataAuth={getCodeVerif.inputAuthData}
+      onIsShowQuickCodeView={onIsShowQuickCodeView}
+    />
   ) : (
     authForm
   );
