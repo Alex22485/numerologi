@@ -1,43 +1,28 @@
 import { StyleSheet, View } from "react-native";
 import {
-  BgColor,
   heightWindow,
   Text_App,
   widthWindow,
 } from "../../../components/tokens";
+import backGrColor from "./backGrColorViewQuickCodeInput";
 
 export default function Module_quickCodeInput_ver2({ quickCode }) {
-  // console.log("quickCode: ", quickCode);
-  // console.log("quickCode.cointFirst: ", quickCode.cointFirst);
-  const backGrColor = (index) => {
-    if (quickCode.errorCode) {
-      return BgColor.bg_error;
-    }
-    if (!Number.isInteger(quickCode.cointFirst)) {
-      return BgColor.bg_pink;
-    }
-    if (quickCode.cointFirst >= index) {
-      return BgColor.bg_dark_pink;
-    }
-    return BgColor.bg_pink;
-  };
-
   const codeVerification = [
-    { index: 0 },
     { index: 1 },
     { index: 2 },
     { index: 3 },
+    { index: 4 },
   ];
 
   return (
     <View style={styles.quickInputCode}>
-      {codeVerification.map((item, index) => {
+      {codeVerification.map((item) => {
         return (
           <View
             key={item.index}
             style={{
               ...styles.textInput,
-              backgroundColor: backGrColor(index),
+              backgroundColor: backGrColor(quickCode, item.index),
             }}
           />
         );

@@ -8,8 +8,9 @@ import {
 } from "../../../components/tokens";
 
 export default function Module_customKeyBoard_ver2({
-  textBtn = "",
+  localStorageCode,
   onChangeColorQuickCode,
+  OnExitAuth,
 }) {
   const btnContent = [
     { key: 1, text: "1" },
@@ -25,6 +26,8 @@ export default function Module_customKeyBoard_ver2({
     { key: 11, text: "0" },
     { key: 12, text: "dell" },
   ];
+
+  const textBtn = localStorageCode ? "Выйти из акаунта" : "";
 
   const disable_and_backGrColor = (item) => {
     return item === 10 ? [BgColor.bg_white, true] : [BgColor.bg_pink, false];
@@ -52,7 +55,14 @@ export default function Module_customKeyBoard_ver2({
       </View>
 
       <View style={styles.content_textBtn}>
-        <Text>{textBtn}</Text>
+        <TouchableOpacity
+          disabled={localStorageCode ? false : true}
+          onPress={() => {
+            OnExitAuth();
+          }}
+        >
+          <Text>{textBtn}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

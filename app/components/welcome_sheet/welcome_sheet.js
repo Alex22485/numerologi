@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
 import {
   BgColor,
   Color,
@@ -15,6 +15,7 @@ export default function Welcome_sheet({ name }) {
         style={styles.img}
         source={require("../../../assets/welcom_IMG_2.png")}
       />
+      {/* <ActivityIndicator size={"large"} color={"black"} /> */}
     </View>
   );
 }

@@ -14,19 +14,20 @@ import storeDataWrite from "./storeDataWrite";
 import storeDataDell from "./storeDataDell";
 import settingsTxtTitle from "./settingsTxtTitle";
 
-export default function Quick_code_ver2({
+export default function Quick_code_ver2_copy({
   getCodeVerif,
   OnInputWithMainPassword,
 }) {
   console.log("locSt", getCodeVerif.localStorageCode);
   const qCode = {
     qCodeFirst: "",
-    cointFirst: "",
+    cointFirst: 0,
     qCodeSecond: "",
     errorCode: false,
     welcome: false,
   };
   const [quickCode, setQuickCode] = useState(qCode);
+  console.log("quickCode: ", quickCode);
 
   if (quickCode.qCodeSecond.length === 4) {
     const compare = quickCode.qCodeFirst === quickCode.qCodeSecond;
@@ -51,49 +52,21 @@ export default function Quick_code_ver2({
   }
 
   const changeColorQuickCode = (code) => {
-    if (
-      quickCode.qCodeFirst.length === 4 &&
-      quickCode.qCodeSecond.length >= 1
-    ) {
-      setQuickCode((pr) => {
-        return {
-          ...pr,
-          cointFirst: ++pr.cointFirst,
-          qCodeSecond: pr.qCodeSecond + "" + code,
-        };
-      });
-      return;
-    }
-    if (quickCode.qCodeFirst.length === 4) {
-      setQuickCode((pr) => {
-        return {
-          ...pr,
-          cointFirst: 0,
-          qCodeSecond: code,
-        };
-      });
-      return;
-    }
-    if (!quickCode.qCodeFirst.length) {
-      setQuickCode((pr) => {
-        return { ...pr, cointFirst: 0, qCodeFirst: code, errorCode: false };
-      });
-      return;
-    }
-
     setQuickCode((pr) => {
       return {
         ...pr,
+        qCodeFirst:
+          pr.cointFirst < 4 ? pr.qCodeFirst + "" + code : pr.qCodeFirst,
         cointFirst: ++pr.cointFirst,
-        qCodeFirst: pr.qCodeFirst + "" + code,
+        qCodeSecond: pr.cointFirst > 4 ? pr.qCodeSecond + "" + code : "",
+        errorCode: pr.errorCode ? false : pr.errorCode,
       };
     });
   };
-  if (quickCode.welcome) {
-    return <Welcome_sheet name={getCodeVerif.inputAuthData["Ваше Имя:"]} />;
-  }
 
-  return (
+  return quickCode.welcome ? (
+    <Welcome_sheet name={getCodeVerif.inputAuthData["Ваше Имя:"]} />
+  ) : (
     <View style={styles.content}>
       <Text
         style={{

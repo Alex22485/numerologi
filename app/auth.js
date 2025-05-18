@@ -1,26 +1,32 @@
 import { View, Text, StyleSheet } from "react-native";
 import { BgColor, Title, Text_App, heightWindow } from "../components/tokens";
-import Auth_form from "./components/auth/auth_form";
 import Input_code_verification from "./components/code_Verification/input_code_verification";
-import { useState } from "react";
-import Quick_code from "./components/quick_code/quick_code";
+import { useEffect, useState } from "react";
 import Quick_code_ver2 from "./components/quick_code/quick_code_ver2";
+import Auth_form from "./components/auth/auth_form";
+import storeDataGet from "./components/quick_code/storeDataGet";
+import Quick_code_ver2_copy from "./components/quick_code/quick_code_ver2_copy";
 
 export default function Auth() {
-  const [getCodeVerif, setGetCodeVerif] = useState({
+  const initialSettings = {
     readyGetCode: false,
     inputAuthData: "",
     isShowQuickCodeView: false,
-  });
-  // console.log("getCodeVerif", getCodeVerif);
-  // console.log("ppppp", getCodeVerif.inputAuthData);
-  // console.log("ppppp", getCodeVerif.inputAuthData);
-  const rr = "Ваше Имя:";
-  console.log("00", getCodeVerif.inputAuthData);
-  console.log("11", getCodeVerif.inputAuthData["Ваше Имя:"]);
+    textForQuickCodeView: "Придумайте пароль быстрого входа",
+    localStorageCode: "",
+  };
+  const [getCodeVerif, setGetCodeVerif] = useState(initialSettings);
 
+  // проверка при запуске есть ли в localStorage quickCode
+  useEffect(() => {
+    storeDataGet("code", setGetCodeVerif);
+  }, []);
+
+  // преход на сраницу получения кода авторизации
   const onPressHandler = (inputValue) => {
-    setGetCodeVerif({ readyGetCode: true, inputAuthData: inputValue });
+    setGetCodeVerif((pr) => {
+      return { ...pr, readyGetCode: true, inputAuthData: inputValue };
+    });
   };
 
   const authForm = (
@@ -30,20 +36,25 @@ export default function Auth() {
     </View>
   );
 
+  // Переход на модуль быстрого входа
   const onIsShowQuickCodeView = (item) => {
     setGetCodeVerif((pr) => {
       return { ...pr, isShowQuickCodeView: item };
     });
   };
-  if (getCodeVerif.isShowQuickCodeView) {
-    return (
-      <Quick_code_ver2
-        textContent={"Придумайте пароль быстрого входа"}
-        name={getCodeVerif.inputAuthData["Ваше Имя:"]}
-      />
-    );
-  }
-  return getCodeVerif.readyGetCode ? (
+
+  // Переход на модуль авторизации
+  const inputWithMainPassword = () => {
+    setGetCodeVerif(initialSettings);
+  };
+
+  return getCodeVerif.isShowQuickCodeView ? (
+    // <Quick_code_ver2
+    <Quick_code_ver2_copy
+      getCodeVerif={getCodeVerif}
+      OnInputWithMainPassword={inputWithMainPassword}
+    />
+  ) : getCodeVerif.readyGetCode ? (
     <Input_code_verification
       inputDataAuth={getCodeVerif.inputAuthData}
       onIsShowQuickCodeView={onIsShowQuickCodeView}
