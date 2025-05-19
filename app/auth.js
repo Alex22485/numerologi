@@ -2,10 +2,10 @@ import { View, Text, StyleSheet } from "react-native";
 import { BgColor, Title, Text_App, heightWindow } from "../components/tokens";
 import Input_code_verification from "./components/code_Verification/input_code_verification";
 import { useEffect, useState } from "react";
-import Quick_code_ver2 from "./components/quick_code/quick_code_ver2";
 import Auth_form from "./components/auth/auth_form";
 import storeDataGet from "./components/quick_code/storeDataGet";
 import Quick_code_ver2_copy from "./components/quick_code/quick_code_ver2_copy";
+import Quick_code_ver3 from "./components/quick_code/quick_code_ver3";
 
 export default function Auth() {
   const initialSettings = {
@@ -50,7 +50,8 @@ export default function Auth() {
 
   return getCodeVerif.isShowQuickCodeView ? (
     // <Quick_code_ver2
-    <Quick_code_ver2_copy
+    // <Quick_code_ver2_copy
+    <Quick_code_ver3
       getCodeVerif={getCodeVerif}
       OnInputWithMainPassword={inputWithMainPassword}
     />

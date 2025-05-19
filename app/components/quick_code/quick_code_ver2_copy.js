@@ -29,6 +29,18 @@ export default function Quick_code_ver2_copy({
   const [quickCode, setQuickCode] = useState(qCode);
   console.log("quickCode: ", quickCode);
 
+  // useEffect(() => {
+  //   if (getCodeVerif.localStorageCode) {
+  //     setQuickCode((pr) => {
+  //       return {
+  //         ...pr,
+  //         qCodeFirst: getCodeVerif.localStorageCode,
+  //         cointFirst: 4,
+  //       };
+  //     });
+  //   }
+  // }, []);
+
   if (quickCode.qCodeSecond.length === 4) {
     const compare = quickCode.qCodeFirst === quickCode.qCodeSecond;
     if (compare) {
