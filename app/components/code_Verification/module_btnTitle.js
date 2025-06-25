@@ -22,14 +22,11 @@ export default function Module_btnTitle() {
 
 const styles = StyleSheet.create({
   titleView: {
-    // marginTop: heightWindow * 0.042,
-    // marginTop: heightWindow * 0.0687,
     marginTop: heightWindow * 0.1202,
     height: heightWindow * 0.0397,
     width: widthWindow * 0.86,
     flexDirection: "row",
     alignItems: "center",
-    // backgroundColor: "pink",
   },
   arrowView_arrow: {
     flex: 1,

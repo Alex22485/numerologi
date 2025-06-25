@@ -28,14 +28,14 @@ export default function Module_inputCode({
         </Text>
         <Text style={styles.textView_h3}>{inputDataAuth["Телефон: +7"]}</Text>
       </View>
-      <Module_inputCode_autoFocus
+      {/* <Module_inputCode_autoFocus
         codeHandler={codeHandler}
         codeSuccessHandler={codeSuccessHandler}
         OnCodeSuccessHandler={OnCodeSuccessHandler}
         codeVerifUserInput={(code, index) => {
           OnCodeVerifUserInput(code, index);
         }}
-      />
+      /> */}
     </View>
   );
 }

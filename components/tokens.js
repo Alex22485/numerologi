@@ -30,6 +30,7 @@ export const Color = {
   white: "#ffffff",
   green: "#79CF4E",
   error: "#D31D1A",
+  placeholder: "#A686A6",
 };
 
 export const Input_Text = {

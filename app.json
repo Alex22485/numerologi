@@ -13,18 +13,30 @@
       "backgroundColor": "#A686A6"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "n"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#A686A6"
-      }
+      },
+      "package": "com.alexgl.num"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router"],
-    "scheme": "num"
+    "plugins": [
+      "expo-router"
+    ],
+    "scheme": "num",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "fb607030-a49b-4d7c-be13-9c2249a3b183"
+      }
+    }
   }
 }

@@ -5,27 +5,52 @@ import {
   Input_Text,
   Title,
 } from "../../../components/tokens";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import colorBorder from "./colorBorder";
 
 export default function TextInputItem({
+  index,
   valueForm,
   placeholder,
-  onChangeHandler,
   inputMode,
+  txtErr = "",
+  isError = "",
+  onChangeHandler,
+  onResetIsError,
 }) {
   const [border, setBorder] = useState({
-    isTextMistakes: false,
+    isTextMistakes: isError,
     color: Color.dark_purple,
     width: 0,
   });
-  // Темная рамка у активного TextInput
-  const onFocusHandler = () => {
-    colorBorder(valueForm, placeholder, setBorder, true);
-  };
-  // Красная рамка у пустого TextInput
-  const onBlurHandler = () => {
-    colorBorder(valueForm, placeholder, setBorder);
+
+  const textError =
+    txtErr === "notAuth" && index === 1
+      ? "телефон не зарегистрирован"
+      : txtErr === "errorPassword" && index === 1
+      ? "не верный пароль"
+      : txtErr.length > 0 && index === 0
+      ? ""
+      : "поле не должно быть пустым";
+
+  const textErrorView = border.isTextMistakes && (
+    <View style={{ height: heightWindow * 0.0343 }}>
+      <Text style={{ ...styles.textMistakes }}>{textError}</Text>
+    </View>
+  );
+
+  useEffect(() => {
+    isError
+      ? setBorder((pr) => {
+          return { ...pr, isTextMistakes: true };
+        })
+      : "";
+  }, [isError]);
+
+  // Цвет рамки
+  const colorBrd = (inOnFocus) => {
+    colorBorder(valueForm, placeholder, setBorder, inOnFocus);
+    isError ? onResetIsError() : "";
   };
 
   return (
@@ -34,33 +59,24 @@ export default function TextInputItem({
         cursorColor={Color.dark_purple}
         inputMode={inputMode}
         placeholder={placeholder}
-        placeholderTextColor={"#A686A6"}
+        placeholderTextColor={Color.placeholder}
+        onFocus={() => colorBrd(true)}
+        onBlur={() => colorBrd(false)}
+        onChangeText={(e) => {
+          return onChangeHandler(placeholder, e);
+        }}
         style={{
           ...styles.form_inputText,
           borderWidth: border.width,
           borderColor: border.color,
         }}
-        onFocus={() => onFocusHandler()}
-        onBlur={() => onBlurHandler()}
-        // для сбора информации из TextInput в один объект
-        onChangeText={(e) => {
-          // console.log("e: ", e);
-          return onChangeHandler(placeholder, e);
-        }}
         // !!!Загуглить отличие onChange от onChangeText
         // onChange={(e) => {
         //   console.log("e: ", e);
-        //   // console.log("t: ", e.nativeEvent.text);
         //   return onChangeHandler(placeholder, e.nativeEvent.text);
         // }}
       />
-      {border.isTextMistakes && (
-        <View style={{ height: heightWindow * 0.0343 }}>
-          <Text style={{ ...styles.textMistakes }}>
-            поле не должно быть пустым
-          </Text>
-        </View>
-      )}
+      {textErrorView}
     </View>
   );
 }

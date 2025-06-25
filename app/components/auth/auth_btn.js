@@ -14,8 +14,16 @@ import {
   Text_App,
 } from "../../../components/tokens";
 import styleBtn from "./styleBtn";
+import { useRouter } from "expo-router";
+// import SignInView from "../signInView/signInView";
 
-export default function Auth_Btn({ onPressHandler, OnValueForm }) {
+export default function Auth_Btn({
+  btnText,
+  textUnderBtn,
+  onPressHandler,
+  OnValueForm,
+}) {
+  const router = useRouter();
   const animatedBtn = new Animated.Value(100);
   const color = animatedBtn.interpolate({
     inputRange: [0, 100],
@@ -42,7 +50,7 @@ export default function Auth_Btn({ onPressHandler, OnValueForm }) {
         onPressOut={onPressBtnOut}
         disabled={styleBtn(OnValueForm)[0] ? false : true}
         onPress={() => {
-          onPressHandler();
+          onPressHandler(btnText);
         }}
       >
         <Animated.View
@@ -57,26 +65,25 @@ export default function Auth_Btn({ onPressHandler, OnValueForm }) {
               color: styleBtn(OnValueForm)[2],
             }}
           >
-            Создать аккаунт
+            {btnText}
           </Text>
         </Animated.View>
       </Pressable>
       <View style={styles.conteiner_AlreadyAuth}>
         <Text style={styles.conteiner_AlreadyAuth_text}>
-          Уже зарегистрированы?{"   "}
+          {textUnderBtn[0]}
+          {"   "}
         </Text>
         <TouchableOpacity
           onPress={() => {
-            console.log("press");
+            router.navigate("/components/signInView/signInView");
           }}
-          onPressIn={() => {
-            console.log("In");
-          }}
-          onPressOut={() => {
-            console.log("out");
-          }}
+          onPressIn={() => {}}
+          onPressOut={() => {}}
         >
-          <Text style={styles.conteiner_AlreadyAuth_btn}>Войти</Text>
+          <Text style={styles.conteiner_AlreadyAuth_btn}>
+            {textUnderBtn[1]}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

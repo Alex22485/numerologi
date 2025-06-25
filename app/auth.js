@@ -2,10 +2,11 @@ import { View, Text, StyleSheet } from "react-native";
 import { BgColor, Title, Text_App, heightWindow } from "../components/tokens";
 import Input_code_verification from "./components/code_Verification/input_code_verification";
 import { useEffect, useState } from "react";
-import Auth_form from "./components/auth/auth_form";
 import storeDataGet from "./components/quick_code/storeDataGet";
-import Quick_code_ver2_copy from "./components/quick_code/quick_code_ver2_copy";
 import Quick_code_ver3 from "./components/quick_code/quick_code_ver3";
+import storeDataObjGet from "./components/quick_code/storeDataObjGet";
+import Auth_form_Universal from "./Auth_form_Universal";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Auth() {
   const initialSettings = {
@@ -17,13 +18,43 @@ export default function Auth() {
   };
   const [getCodeVerif, setGetCodeVerif] = useState(initialSettings);
 
-  // проверка при запуске есть ли в localStorage quickCode
+  // const storeDataString = async (value) => {
+  //   try {
+  //     await AsyncStorage.setItem("probaString", value);
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // };
+  // const storeDataStringGet = async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem("probaString");
+  //     if (value !== null) {
+  //       // value previously stored
+  //       console.log("probaString ", value); // value previously stored);
+  //     }
+  //   } catch (e) {
+  //     // error reading value
+  //   }
+  // };
+
+  // const clearAll = async () => {
+  //   try {
+  //     await AsyncStorage.clear();
+  //   } catch (e) {
+  //     // clear error
+  //   }
+
+  //   console.log("Done.");
+  // };
+
+  // !!!проверка при запуске есть ли в localStorage quickCode
   useEffect(() => {
     storeDataGet("code", setGetCodeVerif);
   }, []);
 
-  // преход на сраницу получения кода авторизации
+  // преход на сраницу получения кода авторизации и записи данных пользователя в localStorage
   const onPressHandler = (inputValue) => {
+    // !Рабочий кода
     setGetCodeVerif((pr) => {
       return { ...pr, readyGetCode: true, inputAuthData: inputValue };
     });
@@ -32,35 +63,39 @@ export default function Auth() {
   const authForm = (
     <View style={styles.content}>
       <Text style={styles.title}>Авторизация</Text>
-      <Auth_form onPressAuth={onPressHandler} />
+      <Auth_form_Universal
+        includeForm={["Ваше Имя:", "Телефон: +7", "Email:", "Пароль:"]}
+        btnText={"Создать аккаунт"}
+        textUnderBtn={["Уже зарегистрировались?", "Войти"]}
+        onPressAuth={onPressHandler}
+      />
     </View>
   );
-
   // Переход на модуль быстрого входа
   const onIsShowQuickCodeView = (item) => {
     setGetCodeVerif((pr) => {
       return { ...pr, isShowQuickCodeView: item };
     });
   };
-
   // Переход на модуль авторизации
   const inputWithMainPassword = () => {
     setGetCodeVerif(initialSettings);
   };
 
   return getCodeVerif.isShowQuickCodeView ? (
-    // <Quick_code_ver2
-    // <Quick_code_ver2_copy
+    // 3_страница ввода пароля быстрого доступа
     <Quick_code_ver3
       getCodeVerif={getCodeVerif}
       OnInputWithMainPassword={inputWithMainPassword}
     />
   ) : getCodeVerif.readyGetCode ? (
+    // 2_страница получения пароля для авторизации
     <Input_code_verification
       inputDataAuth={getCodeVerif.inputAuthData}
       onIsShowQuickCodeView={onIsShowQuickCodeView}
     />
   ) : (
+    // 1_страница авторизации
     authForm
   );
 }

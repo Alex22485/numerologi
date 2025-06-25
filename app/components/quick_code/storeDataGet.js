@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Link } from "expo-router";
 
 export default async function storeDataGet(key, setState) {
   try {
     const value = await AsyncStorage.getItem(key);
-    console.log("value: ", value);
     if (value !== null) {
       setState((pr) => {
         return {

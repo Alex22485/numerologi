@@ -11,11 +11,15 @@ const colorBorder = (valueForm, placeholder, setBorder, onFocus = false) => {
     // Красная рамка/или нет у пустого TextInput
   } else {
     if (valueForm[placeholder].length === 0) {
-      return setBorder({
-        isTextMistakes: true,
-        color: Color.red,
-        width: 2,
+      return setBorder((pr) => {
+        return {
+          ...pr,
+          isTextMistakes: true,
+          color: Color.red,
+          width: 2,
+        };
       });
+      // !проверить нужне ли этот пункт
     } else {
       setBorder({
         isTextMistakes: false,

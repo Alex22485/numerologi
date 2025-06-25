@@ -4,6 +4,7 @@ import Module_btnTitle from "./module_btnTitle";
 import Module_Image_Process_load from "./module_Image_Process_load";
 import { useEffect, useState } from "react";
 import ModuleSuccessCode from "./moduleSuccessCode";
+import Module_inputCode_autoFocus from "./module_inputCode_autoFocus";
 
 export default function Main({
   inputDataAuth,
@@ -20,7 +21,6 @@ export default function Main({
     5: "",
     isShowLoadView: false,
   });
-  // console.log("code", code);
 
   // Получение введенного кода верификации
   const coderef = (inputCode, index) => {
@@ -61,16 +61,23 @@ export default function Main({
       <Module_btnTitle />
       <Module_inputCode
         inputDataAuth={inputDataAuth}
-        OnCodeVerifUserInput={coderef}
+        // OnCodeVerifUserInput={coderef}
+        // codeSuccessHandler={codeSuccessHandler}
+        // OnCodeSuccessHandler={OnCodeSuccessHandler}
+        // codeHandler={code}
+      />
+      <Module_inputCode_autoFocus
+        codeHandler={code}
         codeSuccessHandler={codeSuccessHandler}
         OnCodeSuccessHandler={OnCodeSuccessHandler}
-        codeHandler={code}
+        codeVerifUserInput={coderef}
       />
       <Module_repeat_sending_code codeSuccessHandler={codeSuccessHandler} />
       {code.isShowLoadView && <Module_Image_Process_load />}
       <ModuleSuccessCode
         codeSuccessHandler={codeSuccessHandler}
         onIsShowQuickCodeView={onIsShowQuickCodeView}
+        inputDataAuth={inputDataAuth}
       />
     </>
   );

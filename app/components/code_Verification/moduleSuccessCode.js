@@ -5,11 +5,13 @@ import {
   Text_App,
   widthWindow,
 } from "../../../components/tokens";
-import { useEffect } from "react";
+import storeDataObjWrite from "../quick_code/storeDataObjWrite";
+import storeDataClearAll from "../quick_code/storeDataClearAll";
 
 export default function ModuleSuccessCode({
   codeSuccessHandler,
   onIsShowQuickCodeView,
+  inputDataAuth,
 }) {
   const animatedSuccessCodeVerif = new Animated.ValueXY({
     x: 0,
@@ -30,6 +32,11 @@ export default function ModuleSuccessCode({
 
   if (codeSuccessHandler === "Yes") {
     setTimeout(() => {
+      // ! Временная очистка
+      storeDataClearAll();
+      //!!!  запись в "БД" (пока что в loc storage) после успешного ввода пароля быстрого доступа
+      storeDataObjWrite(inputDataAuth);
+
       onIsShowQuickCodeView(true);
     }, 3000);
   }

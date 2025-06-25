@@ -1,5 +1,3 @@
-import { Link } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import Auth from "./auth";
@@ -13,10 +11,9 @@ export default function App() {
     }, 3000);
   }, []);
 
-  if (timeView) {
-    return <Auth />;
-  }
-  return (
+  return timeView ? (
+    <Auth />
+  ) : (
     <View style={styles.container}>
       <Image
         style={styles.img}

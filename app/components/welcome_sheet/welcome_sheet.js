@@ -6,7 +6,7 @@ import {
   widthWindow,
 } from "../../../components/tokens";
 
-export default function Welcome_sheet({ name }) {
+export default function Welcome_sheet({ name = "" }) {
   return (
     <View style={styles.content}>
       <Text style={styles.content_txt_1}>Добрый вечер</Text>
