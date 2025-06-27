@@ -18,35 +18,6 @@ export default function Auth() {
   };
   const [getCodeVerif, setGetCodeVerif] = useState(initialSettings);
 
-  // const storeDataString = async (value) => {
-  //   try {
-  //     await AsyncStorage.setItem("probaString", value);
-  //   } catch (e) {
-  //     // saving error
-  //   }
-  // };
-  // const storeDataStringGet = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem("probaString");
-  //     if (value !== null) {
-  //       // value previously stored
-  //       console.log("probaString ", value); // value previously stored);
-  //     }
-  //   } catch (e) {
-  //     // error reading value
-  //   }
-  // };
-
-  // const clearAll = async () => {
-  //   try {
-  //     await AsyncStorage.clear();
-  //   } catch (e) {
-  //     // clear error
-  //   }
-
-  //   console.log("Done.");
-  // };
-
   // !!!проверка при запуске есть ли в localStorage quickCode
   useEffect(() => {
     storeDataGet("code", setGetCodeVerif);

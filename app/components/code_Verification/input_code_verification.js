@@ -50,7 +50,6 @@ export default function Input_code_verification({
         isBlockAnimatedCodeHandler={multiState.isBlockAnimatedCode}
         randomCode={randomCode}
       />
-
       <Main
         inputDataAuth={inputDataAuth}
         onCodeAuth={onCodeAuth}
