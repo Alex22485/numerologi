@@ -7,11 +7,9 @@ import ModuleSuccessCode from "./moduleSuccessCode";
 import Module_inputCode_autoFocus from "./module_inputCode_autoFocus";
 
 export default function Main({
-  inputDataAuth,
   onCodeAuth,
   codeSuccessHandler,
   OnCodeSuccessHandler,
-  onIsShowQuickCodeView,
 }) {
   const [code, setIscode] = useState({
     1: "",
@@ -59,13 +57,7 @@ export default function Main({
   return (
     <>
       <Module_btnTitle />
-      <Module_inputCode
-        inputDataAuth={inputDataAuth}
-        // OnCodeVerifUserInput={coderef}
-        // codeSuccessHandler={codeSuccessHandler}
-        // OnCodeSuccessHandler={OnCodeSuccessHandler}
-        // codeHandler={code}
-      />
+      <Module_inputCode />
       <Module_inputCode_autoFocus
         codeHandler={code}
         codeSuccessHandler={codeSuccessHandler}
@@ -74,11 +66,7 @@ export default function Main({
       />
       <Module_repeat_sending_code codeSuccessHandler={codeSuccessHandler} />
       {code.isShowLoadView && <Module_Image_Process_load />}
-      <ModuleSuccessCode
-        codeSuccessHandler={codeSuccessHandler}
-        onIsShowQuickCodeView={onIsShowQuickCodeView}
-        inputDataAuth={inputDataAuth}
-      />
+      <ModuleSuccessCode codeSuccessHandler={codeSuccessHandler} />
     </>
   );
 }

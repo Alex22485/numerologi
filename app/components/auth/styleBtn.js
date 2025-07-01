@@ -12,6 +12,7 @@ const styleBtn = (OnValueForm) => {
   const btnTextColor = btnIsActiv
     ? BtnEnable.color_white
     : BtnDisable.color_gray;
+
   return [btnIsActiv, btnOpacity, btnTextColor];
 };
 

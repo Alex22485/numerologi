@@ -4,15 +4,10 @@ import { useState } from "react";
 import Main from "./main";
 import Module_Alert_code_verif_ver3 from "./module_Alert_code_verif_ver3";
 import randomNumber from "./randomNumber";
-import storeDataWrite from "../quick_code/storeDataWrite";
-import storeDataObjWrite from "../quick_code/storeDataObjWrite";
 
 const randomCode = randomNumber(10000, 100000);
 
-export default function Input_code_verification({
-  inputDataAuth,
-  onIsShowQuickCodeView,
-}) {
+export default function Input_code_verification({}) {
   const [multiState, setMultiState] = useState({
     isBlockAnimatedCode: false,
     codeSuccess: "empty",
@@ -51,11 +46,9 @@ export default function Input_code_verification({
         randomCode={randomCode}
       />
       <Main
-        inputDataAuth={inputDataAuth}
         onCodeAuth={onCodeAuth}
         codeSuccessHandler={multiState.codeSuccess}
         OnCodeSuccessHandler={OnCodeSuccessHandler}
-        onIsShowQuickCodeView={onIsShowQuickCodeView}
       />
     </View>
   );

@@ -6,12 +6,14 @@ import {
   Text_App,
   widthWindow,
 } from "../../../components/tokens";
+import { useAtom } from "jotai";
+import {
+  getCodeVerification,
+  ini,
+} from "../../../entities/differentsVal/initialSettings";
+import storeDataDell from "./storeDataDell";
 
-export default function Module_customKeyBoard_ver2({
-  localStorageCode,
-  onChangeColorQuickCode,
-  OnExitAuth,
-}) {
+export default function Module_customKeyBoard_ver2({ onChangeColorQuickCode }) {
   const btnContent = [
     { key: 1, text: "1" },
     { key: 2, text: "2" },
@@ -27,7 +29,10 @@ export default function Module_customKeyBoard_ver2({
     { key: 12, text: "dell" },
   ];
 
-  const textBtn = localStorageCode ? "Выйти из акаунта" : "";
+  const [initSt] = useAtom(ini);
+  const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
+
+  const textBtn = getCodeVerif.localStorageCode ? "Выйти из акаунта" : "";
 
   const disable_and_backGrColor = (item) => {
     return item === 10 ? [BgColor.bg_white, true] : [BgColor.bg_pink, false];
@@ -56,9 +61,11 @@ export default function Module_customKeyBoard_ver2({
 
       <View style={styles.content_textBtn}>
         <TouchableOpacity
-          disabled={localStorageCode ? false : true}
+          disabled={getCodeVerif.localStorageCode ? false : true}
           onPress={() => {
-            OnExitAuth();
+            //!28/06/25 Выход из авторизации
+            storeDataDell("code");
+            setGetCodeVerif(initSt);
           }}
         >
           <Text>{textBtn}</Text>

@@ -11,14 +11,11 @@ import Module_customKeyBoard_ver2 from "./module_customKeyBoard_ver2";
 import { Vibration } from "react-native";
 import Welcome_sheet from "../welcome_sheet/welcome_sheet";
 import storeDataWrite from "./storeDataWrite";
-import storeDataDell from "./storeDataDell";
 import settingsTxtTitle_ver3 from "./settingsTxtTitle_ver3";
+import { useAtom } from "jotai";
+import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
 
-export default function Quick_code_ver3({
-  getCodeVerif,
-  OnInputWithMainPassword,
-}) {
-  // console.log("locSt", getCodeVerif.localStorageCode);
+export default function Quick_code_ver3() {
   const qCode = {
     qCodeFirst: "",
     cointFirst: 0,
@@ -27,8 +24,8 @@ export default function Quick_code_ver3({
     welcome: false,
     localStorage: "",
   };
+  const [getCodeVerif] = useAtom(getCodeVerification);
   const [quickCode, setQuickCode] = useState(qCode);
-  // console.log("quickCode: ", quickCode);
 
   useEffect(() => {
     if (getCodeVerif.localStorageCode) {
@@ -88,24 +85,17 @@ export default function Quick_code_ver3({
       <Text
         style={{
           ...styles.content_text,
-          // color: settingsTxtTitle(
           color: settingsTxtTitle_ver3(
             quickCode,
             getCodeVerif.localStorageCode
           )[0],
         }}
       >
-        {/* {settingsTxtTitle(quickCode, getCodeVerif.textForQuickCodeView)[1]} */}
         {settingsTxtTitle_ver3(quickCode, getCodeVerif.localStorageCode)[1]}
       </Text>
       <Module_quickCodeInput_ver2 quickCode={quickCode} />
       <Module_customKeyBoard_ver2
         onChangeColorQuickCode={changeColorQuickCode}
-        localStorageCode={getCodeVerif.localStorageCode}
-        OnExitAuth={() => {
-          storeDataDell("code");
-          OnInputWithMainPassword();
-        }}
       />
     </View>
   );

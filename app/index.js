@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import Auth from "./auth";
+import { useAtom } from "jotai";
+import { profileAtom } from "../entities/user/model/user_state";
 
 export default function App() {
+  // const [profile] = useAtom(profileAtom);
+  // console.log("profile_index: ", profile.profile?.name);
+
   const [timeView, SetTimeView] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       SetTimeView(true);
-    }, 3000);
+    }, 3100);
   }, []);
 
   return timeView ? (

@@ -4,14 +4,17 @@ import { heightWindow, widthWindow } from "../components/tokens";
 import Auth_Btn from "./components/auth/auth_btn";
 import TextInputItem from "./components/auth/textInputItem";
 import storeDataObjGet from "./components/quick_code/storeDataObjGet";
+import { useAtom } from "jotai";
+import { getCodeVerification } from "../entities/differentsVal/initialSettings";
 
 export default function Auth_form_Universal({
   includeForm,
   btnText = "",
   textUnderBtn,
   onGoToWelcomSheet,
-  onPressAuth,
 }) {
+  const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
+
   // Преобразование массива в объект
   const includeFormObj = includeForm.reduce((object, value) => {
     return { ...object, [value]: "" };
@@ -21,6 +24,7 @@ export default function Auth_form_Universal({
   const [compairPassword, setCompairPassword] = useState("");
   const [dataError, setDataError] = useState({ isError: false, textError: "" });
 
+  console.log("valueForm", valueForm);
   const inputMode = (index) => {
     return index === 0
       ? "text"
@@ -60,7 +64,9 @@ export default function Auth_form_Universal({
     if (idetificateBtn === "Войти") {
       storeDataObjGet(valueForm, setCompairPassword);
     } else {
-      onPressAuth(valueForm);
+      setGetCodeVerif((pr) => {
+        return { ...pr, readyGetCode: true, inputAuthData: valueForm };
+      });
     }
   };
   return (

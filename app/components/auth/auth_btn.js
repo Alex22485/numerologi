@@ -15,7 +15,7 @@ import {
 } from "../../../components/tokens";
 import styleBtn from "./styleBtn";
 import { useRouter } from "expo-router";
-// import SignInView from "../signInView/signInView";
+import animatedBtnFunc from "../../../components/animatedBtn";
 
 export default function Auth_Btn({
   btnText,
@@ -24,30 +24,21 @@ export default function Auth_Btn({
   OnValueForm,
 }) {
   const router = useRouter();
+
   const animatedBtn = new Animated.Value(100);
   const color = animatedBtn.interpolate({
     inputRange: [0, 100],
     outputRange: [Btn.btnHover, BtnEnable.bgColor],
   });
-  const onPressBtnIn = () => {
-    Animated.timing(animatedBtn, {
-      toValue: 0,
-      duration: 50,
-      useNativeDriver: true,
-    }).start();
-  };
-  const onPressBtnOut = () => {
-    Animated.timing(animatedBtn, {
-      toValue: 100,
-      duration: 50,
-      useNativeDriver: true,
-    }).start();
-  };
   return (
     <View style={styles.Btn}>
       <Pressable
-        onPressIn={onPressBtnIn}
-        onPressOut={onPressBtnOut}
+        onPressIn={() => {
+          animatedBtnFunc(animatedBtn, 0, 50);
+        }}
+        onPressOut={() => {
+          animatedBtnFunc(animatedBtn, 50, 0);
+        }}
         disabled={styleBtn(OnValueForm)[0] ? false : true}
         onPress={() => {
           onPressHandler(btnText);

@@ -5,7 +5,8 @@ import {
   Text_App,
   widthWindow,
 } from "../../../components/tokens";
-import Module_inputCode_autoFocus from "./module_inputCode_autoFocus";
+import { useAtom } from "jotai";
+import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
 
 export default function Module_inputCode({
   inputDataAuth,
@@ -14,6 +15,8 @@ export default function Module_inputCode({
   OnCodeSuccessHandler,
   codeHandler,
 }) {
+  const [getCodeVerif] = useAtom(getCodeVerification);
+  console.log("Module_inputCode: ", getCodeVerif);
   // console.log("inputDataAuth", inputDataAuth);
   return (
     <View style={styles.content}>
@@ -26,7 +29,9 @@ export default function Module_inputCode({
         <Text style={styles.textView_h3}>
           Мы отправили push уведомление на:
         </Text>
-        <Text style={styles.textView_h3}>{inputDataAuth["Телефон: +7"]}</Text>
+        <Text style={styles.textView_h3}>
+          {getCodeVerif.inputAuthData["Телефон: +7"]}
+        </Text>
       </View>
       {/* <Module_inputCode_autoFocus
         codeHandler={codeHandler}

@@ -7,12 +7,11 @@ import {
 } from "../../../components/tokens";
 import storeDataObjWrite from "../quick_code/storeDataObjWrite";
 import storeDataClearAll from "../quick_code/storeDataClearAll";
+import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
+import { useAtom } from "jotai";
 
-export default function ModuleSuccessCode({
-  codeSuccessHandler,
-  onIsShowQuickCodeView,
-  inputDataAuth,
-}) {
+export default function ModuleSuccessCode({ codeSuccessHandler }) {
+  const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
   const animatedSuccessCodeVerif = new Animated.ValueXY({
     x: 0,
     y: heightWindow,
@@ -30,14 +29,17 @@ export default function ModuleSuccessCode({
     return <></>;
   }
 
+  // Переход на страницу выбора быстрого пароля
   if (codeSuccessHandler === "Yes") {
     setTimeout(() => {
       // ! Временная очистка
       storeDataClearAll();
       //!!!  запись в "БД" (пока что в loc storage) после успешного ввода пароля быстрого доступа
-      storeDataObjWrite(inputDataAuth);
+      storeDataObjWrite(getCodeVerif.inputAuthData);
 
-      onIsShowQuickCodeView(true);
+      setGetCodeVerif((pr) => {
+        return { ...pr, isShowQuickCodeView: true };
+      });
     }, 3000);
   }
 
