@@ -18,7 +18,7 @@ export default function Quick_code_ver2_copy({
   getCodeVerif,
   OnInputWithMainPassword,
 }) {
-  console.log("locSt", getCodeVerif.localStorageCode);
+  // console.log("locSt", getCodeVerif.localStorageCode);
   const qCode = {
     qCodeFirst: "",
     cointFirst: 0,
@@ -27,7 +27,7 @@ export default function Quick_code_ver2_copy({
     welcome: false,
   };
   const [quickCode, setQuickCode] = useState(qCode);
-  console.log("quickCode: ", quickCode);
+  // console.log("quickCode: ", quickCode);
 
   // useEffect(() => {
   //   if (getCodeVerif.localStorageCode) {

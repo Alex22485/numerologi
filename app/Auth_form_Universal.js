@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { heightWindow, widthWindow } from "../components/tokens";
-import Auth_Btn from "./components/auth/auth_btn";
 import TextInputItem from "./components/auth/textInputItem";
 import storeDataObjGet from "./components/quick_code/storeDataObjGet";
 import { useAtom } from "jotai";
 import { getCodeVerification } from "../entities/differentsVal/initialSettings";
+import Btn from "./Btn/btn";
 
 export default function Auth_form_Universal({
   includeForm,
@@ -14,6 +14,7 @@ export default function Auth_form_Universal({
   onGoToWelcomSheet,
 }) {
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
+  console.log("getCodeVerif: ", getCodeVerif);
 
   // Преобразование массива в объект
   const includeFormObj = includeForm.reduce((object, value) => {
@@ -24,7 +25,6 @@ export default function Auth_form_Universal({
   const [compairPassword, setCompairPassword] = useState("");
   const [dataError, setDataError] = useState({ isError: false, textError: "" });
 
-  console.log("valueForm", valueForm);
   const inputMode = (index) => {
     return index === 0
       ? "text"
@@ -36,7 +36,7 @@ export default function Auth_form_Universal({
   };
 
   useEffect(() => {
-    // сравнение введенного кода верно, вход в профить
+    // сравнение введенного кода верно, вход в профиль
     if (compairPassword.code === "succssess") {
       onGoToWelcomSheet(valueForm);
     } // сравнение введенного кода НЕверно, не верный телефон
@@ -91,11 +91,11 @@ export default function Auth_form_Universal({
         })}
       </View>
       <View style={styles.auth_Btn}>
-        <Auth_Btn
+        <Btn
           btnText={btnText}
           textUnderBtn={textUnderBtn}
           onPressHandler={onPressBtn}
-          OnValueForm={valueForm}
+          valueForm={valueForm}
         />
       </View>
     </View>

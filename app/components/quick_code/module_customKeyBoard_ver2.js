@@ -31,8 +31,12 @@ export default function Module_customKeyBoard_ver2({ onChangeColorQuickCode }) {
 
   const [initSt] = useAtom(ini);
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
+  console.log("Module_customKeyBoard_ver2: ", getCodeVerif);
 
   const textBtn = getCodeVerif.localStorageCode ? "Выйти из акаунта" : "";
+
+  // const proba = { ...initSt, inputAuthData: getCodeVerif.inputAuthData };
+  // console.log("proba: ", proba);
 
   const disable_and_backGrColor = (item) => {
     return item === 10 ? [BgColor.bg_white, true] : [BgColor.bg_pink, false];
@@ -65,7 +69,10 @@ export default function Module_customKeyBoard_ver2({ onChangeColorQuickCode }) {
           onPress={() => {
             //!28/06/25 Выход из авторизации
             storeDataDell("code");
-            setGetCodeVerif(initSt);
+            setGetCodeVerif(() => {
+              return { ...initSt, inputAuthData: getCodeVerif.inputAuthData };
+            });
+            // setGetCodeVerif(initSt);
           }}
         >
           <Text>{textBtn}</Text>

@@ -24,19 +24,19 @@ export default function Module_Alert_code_verif_ver3({
     outputRange: [0, 1],
   });
 
-  const funcAnimated = (type, toValue, duration, useNativeDriver) => {
+  const funcAnimated = (type, toValue, duration) => {
     return Animated.timing(type, {
       toValue: toValue,
       duration: duration,
-      useNativeDriver: useNativeDriver,
+      useNativeDriver: true,
     }).start();
   };
 
   const layout = () => {
-    funcAnimated(animatedTransform, { x: 0, y: 10 }, 200, true);
-    funcAnimated(animatedOpacity, 0, 15000, true);
+    funcAnimated(animatedTransform, { x: 0, y: 10 }, 200);
+    funcAnimated(animatedOpacity, 0, 15000);
   };
-  // Исчезновение анимации кода если код введен ыерно
+  // Исчезновение анимации кода если код введен Верно
   if (isBlockAnimatedCodeHandler === true) {
     return <></>;
   }

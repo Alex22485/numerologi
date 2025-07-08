@@ -7,7 +7,7 @@ import randomNumber from "./randomNumber";
 
 const randomCode = randomNumber(10000, 100000);
 
-export default function Input_code_verification({}) {
+export default function Input_code_verification() {
   const [multiState, setMultiState] = useState({
     isBlockAnimatedCode: false,
     codeSuccess: "empty",

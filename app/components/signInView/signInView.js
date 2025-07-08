@@ -16,7 +16,7 @@ export default function SignInView() {
   });
 
   const onPasswordSuccssess = (value) => {
-    console.log("Пароль_Успешен: данныеUser: ", value);
+    // console.log("Пароль_Успешен: данныеUser: ", value);
     setIsPSWDSuccsses({ ref: true, userInfo: value });
   };
 

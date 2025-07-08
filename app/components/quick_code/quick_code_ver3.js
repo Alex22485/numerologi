@@ -16,6 +16,7 @@ import { useAtom } from "jotai";
 import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
 
 export default function Quick_code_ver3() {
+  const [getCodeVerif] = useAtom(getCodeVerification);
   const qCode = {
     qCodeFirst: "",
     cointFirst: 0,
@@ -23,8 +24,10 @@ export default function Quick_code_ver3() {
     errorCode: false,
     welcome: false,
     localStorage: "",
+    userInfo: getCodeVerif.inputAuthData,
   };
-  const [getCodeVerif] = useAtom(getCodeVerification);
+
+  // console.log("QC_UserInfo: ", getCodeVerif);
   const [quickCode, setQuickCode] = useState(qCode);
 
   useEffect(() => {
@@ -44,7 +47,13 @@ export default function Quick_code_ver3() {
     const compare = quickCode.qCodeFirst === quickCode.qCodeSecond;
     if (compare) {
       // writing quickCode  in localStorage
-      storeDataWrite(quickCode.qCodeFirst);
+      //! Новый код с 07.07.25
+      storeDataWrite("code", {
+        code: quickCode.qCodeFirst,
+        userInfo: quickCode.userInfo,
+      });
+      // ! Старый код до 07.07.25
+      // storeDataWrite(quickCode.qCodeFirst);
       setQuickCode(() => {
         return {
           ...qCode,
