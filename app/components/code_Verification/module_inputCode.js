@@ -8,16 +8,8 @@ import {
 import { useAtom } from "jotai";
 import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
 
-export default function Module_inputCode({
-  inputDataAuth,
-  OnCodeVerifUserInput,
-  codeSuccessHandler,
-  OnCodeSuccessHandler,
-  codeHandler,
-}) {
+export default function Module_inputCode({}) {
   const [getCodeVerif] = useAtom(getCodeVerification);
-  console.log("Module_inputCode: ", getCodeVerif);
-  // console.log("inputDataAuth", inputDataAuth);
   return (
     <View style={styles.content}>
       <Image
@@ -33,14 +25,6 @@ export default function Module_inputCode({
           {getCodeVerif.inputAuthData["Телефон: +7"]}
         </Text>
       </View>
-      {/* <Module_inputCode_autoFocus
-        codeHandler={codeHandler}
-        codeSuccessHandler={codeSuccessHandler}
-        OnCodeSuccessHandler={OnCodeSuccessHandler}
-        codeVerifUserInput={(code, index) => {
-          OnCodeVerifUserInput(code, index);
-        }}
-      /> */}
     </View>
   );
 }

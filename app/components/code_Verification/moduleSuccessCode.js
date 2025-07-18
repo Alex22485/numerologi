@@ -5,10 +5,10 @@ import {
   Text_App,
   widthWindow,
 } from "../../../components/tokens";
-import storeDataObjWrite from "../quick_code/storeDataObjWrite";
 import storeDataClearAll from "../quick_code/storeDataClearAll";
 import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
 import { useAtom } from "jotai";
+import storeDataWrite from "../quick_code/storeDataWrite";
 
 export default function ModuleSuccessCode({ codeSuccessHandler }) {
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
@@ -33,9 +33,12 @@ export default function ModuleSuccessCode({ codeSuccessHandler }) {
   if (codeSuccessHandler === "Yes") {
     setTimeout(() => {
       // ! Временная очистка
-      storeDataClearAll();
+      // storeDataClearAll();
       //!!!  запись в "БД" (пока что в loc storage) после успешного ввода пароля быстрого доступа
-      storeDataObjWrite(getCodeVerif.inputAuthData);
+      storeDataWrite(
+        getCodeVerif.inputAuthData["Телефон: +7"],
+        getCodeVerif.inputAuthData
+      );
 
       setGetCodeVerif((pr) => {
         return { ...pr, isShowQuickCodeView: true };

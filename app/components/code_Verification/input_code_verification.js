@@ -20,19 +20,15 @@ export default function Input_code_verification() {
   // Код авторизации сравнение с введенным
   const onCodeAuth = (code) => {
     if (+code.code === randomCode) {
-      //! Запись данных о пользователе при успешной авторизации в localStorage( в  будующем на сервер). Сделать в виде объекта. Подумать может перенести эту запись после ввода кода быстрого доступа
-      // storeDataObjWrite(inputDataAuth, setMultiState, {
-      //   codeSuccess: "Yes",
-      //   isBlockAnimatedCode: true,
-      // });
 
+      // переход на стр быстрого кода через Main-moduleSuccessCode
       setMultiState({ codeSuccess: "Yes", isBlockAnimatedCode: true });
     } else {
       setMultiState({ codeSuccess: "No", isBlockAnimatedCode: "error" });
     }
   };
 
-  // отлюкчение вибрации не правильно введенного кода авторизации
+  // отключение вибрации не правильно введенного кода авторизации
   const OnCodeSuccessHandler = (resetVibration) => {
     setMultiState((pr) => {
       return { ...pr, codeSuccess: resetVibration };

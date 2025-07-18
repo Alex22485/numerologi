@@ -7,7 +7,7 @@ import {
 } from "../../../components/tokens";
 import Auth_form_Universal from "../../Auth_form_Universal";
 import { useState } from "react";
-import Welcome_sheet from "../welcome_sheet/welcome_sheet";
+import Quick_code_ver3 from "../quick_code/quick_code_ver3";
 
 export default function SignInView() {
   const [isPSWDSuccsses, setIsPSWDSuccsses] = useState({
@@ -16,13 +16,12 @@ export default function SignInView() {
   });
 
   const onPasswordSuccssess = (value) => {
-    // console.log("Пароль_Успешен: данныеUser: ", value);
     setIsPSWDSuccsses({ ref: true, userInfo: value });
   };
 
   return isPSWDSuccsses.ref ? (
     // !Введенный пароль совпадает БД
-    <Welcome_sheet name={isPSWDSuccsses.userInfo["Ваше Имя:"]} />
+    <Quick_code_ver3 />
   ) : (
     <View style={styles.contentView}>
       <Text style={styles.title}>Вход</Text>
@@ -34,31 +33,6 @@ export default function SignInView() {
       />
     </View>
   );
-
-  // ! Рабочий код до 03.06.25
-  // return compairPassword.code === "succssess" ? (
-  //   // !Введенный пароль совпадает БД
-  //   <Welcome_sheet name={compairPassword["Ваше Имя:"]} />
-  // ) : compairPassword.code === "error" ? (
-  //   // ! Пароль не совпадает с БД
-  //   <View>
-  //     <Text>Ошибка</Text>
-  //   </View>
-  // ) : compairPassword.code === "notAuth" ? (
-  //   // 1Не верный номер телефона
-  //   <View>
-  //     <Text>телефон не зарегистрирован</Text>
-  //   </View>
-  // ) : (
-  //   <View style={styles.contentView}>
-  //     <Text style={styles.title}>Вход</Text>
-  //     <Auth_form_Universal
-  //       includeForm={["Телефон: +7", "Пароль:"]}
-  //       onPressAuth={onPressHandler}
-  //       btnText={"Войти"}
-  //       textUnderBtn={["", "Забыли пароль?"]}
-  //     />
-  //   </View>
 }
 
 const styles = StyleSheet.create({

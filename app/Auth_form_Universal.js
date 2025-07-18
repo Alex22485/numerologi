@@ -14,7 +14,7 @@ export default function Auth_form_Universal({
   onGoToWelcomSheet,
 }) {
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
-  console.log("getCodeVerif: ", getCodeVerif);
+  console.log("Auth_form_Universal_getCodeVerif: ", getCodeVerif);
 
   // Преобразование массива в объект
   const includeFormObj = includeForm.reduce((object, value) => {
@@ -23,6 +23,8 @@ export default function Auth_form_Universal({
   //! Вводимые данные в форму
   const [valueForm, setValueForm] = useState(includeFormObj);
   const [compairPassword, setCompairPassword] = useState("");
+  console.log("compairPassword: ", compairPassword);
+
   const [dataError, setDataError] = useState({ isError: false, textError: "" });
 
   const inputMode = (index) => {
@@ -35,11 +37,15 @@ export default function Auth_form_Universal({
       : "text";
   };
 
+  // ! Код не для авторизации (только для входа после авторизации)
   useEffect(() => {
-    // сравнение введенного кода верно, вход в профиль
+    //  Переход signInView и далее на welcomeSheet
     if (compairPassword.code === "succssess") {
-      onGoToWelcomSheet(valueForm);
-    } // сравнение введенного кода НЕверно, не верный телефон
+      setGetCodeVerif((pr) => {
+        return { ...pr, inputAuthData: compairPassword.userDataFromServer };
+      });
+      onGoToWelcomSheet();
+    }
     if (compairPassword.code === "notAuth") {
       setDataError((pr) => {
         return { ...pr, isError: true, textError: "notAuth" };
@@ -59,10 +65,12 @@ export default function Auth_form_Universal({
       return { ...prevSt, [placeholder]: value };
     });
   };
-  // запрос на сравнение обычного пароля введенного и записанного в "БД" либо авторизация
+
   const onPressBtn = (idetificateBtn) => {
+    // Для входа
     if (idetificateBtn === "Войти") {
       storeDataObjGet(valueForm, setCompairPassword);
+      // страница Получения кода Авторизации через страницу auth.js
     } else {
       setGetCodeVerif((pr) => {
         return { ...pr, readyGetCode: true, inputAuthData: valueForm };

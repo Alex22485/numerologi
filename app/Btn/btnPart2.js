@@ -12,9 +12,15 @@ export default function BnPart2({ textUnderBtn }) {
       </Text>
       <TouchableOpacity
         onPress={() => {
-          console.log("fff");
-          router.navigate("/components/signInView/signInView");
-          // router.navigate("/app/components/signInView/signInView");
+          if (textUnderBtn[1] === "Войти") {
+            //! кнопка "назад" отправляет к начальной загрузке старницы
+            // router.navigate("/components/signInView/signInView");
+            //! кнопка "назад" сворачивает приложение
+            router.replace("/components/signInView/signInView");
+            // router.navigate("/app/components/signInView/signInView");
+          } else {
+            console.log("зыбыл пароль");
+          }
         }}
         onPressIn={() => {}}
         onPressOut={() => {}}

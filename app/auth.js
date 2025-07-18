@@ -10,18 +10,33 @@ import { getCodeVerification } from "../entities/differentsVal/initialSettings";
 
 export default function Auth() {
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
-  // console.log("getCodeVerif: ", getCodeVerif);
+  console.log("Auth_getCodeVerif: ", getCodeVerif);
 
   // !!!проверка при запуске есть ли в localStorage quickCode
   useEffect(() => {
-    storeDataGet("code", setGetCodeVerif);
+    console.log("Auth_useEffect");
+    async function uuu() {
+      const dataUserAndQuickCode = await storeDataGet("code");
+      dataUserAndQuickCode[0]["Ваше Имя:"]
+        ? setGetCodeVerif((pr) => {
+            return {
+              ...pr,
+              inputAuthData: dataUserAndQuickCode[0],
+              isShowQuickCodeView: true,
+              textForQuickCodeView: "Введите код доступа",
+              localStorageCode: dataUserAndQuickCode[1],
+            };
+          })
+        : "";
+    }
+    uuu();
   }, []);
 
   return getCodeVerif.isShowQuickCodeView ? (
-    // view пароля быстрого доступа
+    // страница пароля быстрого доступа
     <Quick_code_ver3 />
   ) : getCodeVerif.readyGetCode ? (
-    // страница получения пароля
+    // страница получения пароля для авторизации
     <Input_code_verification />
   ) : (
     // view авторизации

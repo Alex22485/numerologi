@@ -16,7 +16,8 @@ import { useAtom } from "jotai";
 import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
 
 export default function Quick_code_ver3() {
-  const [getCodeVerif] = useAtom(getCodeVerification);
+  const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
+  console.log("Quick_code_ver3_getCodeVerif: ", getCodeVerif);
   const qCode = {
     qCodeFirst: "",
     cointFirst: 0,
@@ -24,20 +25,19 @@ export default function Quick_code_ver3() {
     errorCode: false,
     welcome: false,
     localStorage: "",
-    userInfo: getCodeVerif.inputAuthData,
   };
 
-  // console.log("QC_UserInfo: ", getCodeVerif);
   const [quickCode, setQuickCode] = useState(qCode);
+  console.log("quickCode: ", quickCode);
 
   useEffect(() => {
-    if (getCodeVerif.localStorageCode) {
+    if (getCodeVerif.localStorageCode.code) {
       setQuickCode((pr) => {
         return {
           ...pr,
-          qCodeFirst: getCodeVerif.localStorageCode,
+          qCodeFirst: getCodeVerif.localStorageCode.code,
           cointFirst: 4,
-          localStorage: getCodeVerif.localStorageCode,
+          localStorage: getCodeVerif.localStorageCode.code,
         };
       });
     }
@@ -46,14 +46,12 @@ export default function Quick_code_ver3() {
   if (quickCode.qCodeSecond.length === 4) {
     const compare = quickCode.qCodeFirst === quickCode.qCodeSecond;
     if (compare) {
-      // writing quickCode  in localStorage
-      //! Новый код с 07.07.25
+      // !запись быстрого кода в локальное хранилище
       storeDataWrite("code", {
         code: quickCode.qCodeFirst,
-        userInfo: quickCode.userInfo,
+        phone: getCodeVerif.inputAuthData["Телефон: +7"],
       });
-      // ! Старый код до 07.07.25
-      // storeDataWrite(quickCode.qCodeFirst);
+      // Переход на страницу welcomeSheet
       setQuickCode(() => {
         return {
           ...qCode,
@@ -66,11 +64,20 @@ export default function Quick_code_ver3() {
     setQuickCode((pr) => {
       return {
         ...qCode,
-        qCodeFirst: getCodeVerif.localStorageCode,
-        cointFirst: getCodeVerif.localStorageCode ? 4 : "",
+        qCodeFirst: getCodeVerif.localStorageCode.code
+          ? getCodeVerif.localStorageCode.code
+          : "",
+        cointFirst: getCodeVerif.localStorageCode.code ? 4 : "",
         errorCode: true,
-        localStorage: getCodeVerif.localStorageCode,
+        localStorage: getCodeVerif.localStorageCode.code ? 4 : "",
       };
+      // return {
+      //   ...qCode,
+      //   qCodeFirst: getCodeVerif.localStorageCode.code,
+      //   cointFirst: getCodeVerif.localStorageCode.code ? 4 : "",
+      //   errorCode: true,
+      //   localStorage: getCodeVerif.localStorageCode.code,
+      // };
     });
   }
 
@@ -88,7 +95,7 @@ export default function Quick_code_ver3() {
   };
 
   return quickCode.welcome ? (
-    <Welcome_sheet name={getCodeVerif.inputAuthData["Ваше Имя:"]} />
+    <Welcome_sheet />
   ) : (
     <View style={styles.content}>
       <Text
@@ -96,11 +103,16 @@ export default function Quick_code_ver3() {
           ...styles.content_text,
           color: settingsTxtTitle_ver3(
             quickCode,
-            getCodeVerif.localStorageCode
+            getCodeVerif.localStorageCode.code
           )[0],
         }}
       >
-        {settingsTxtTitle_ver3(quickCode, getCodeVerif.localStorageCode)[1]}
+        {
+          settingsTxtTitle_ver3(
+            quickCode,
+            getCodeVerif.localStorageCode.code
+          )[1]
+        }
       </Text>
       <Module_quickCodeInput_ver2 quickCode={quickCode} />
       <Module_customKeyBoard_ver2

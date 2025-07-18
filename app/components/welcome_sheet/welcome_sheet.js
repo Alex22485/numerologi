@@ -7,17 +7,19 @@ import {
 } from "../../../components/tokens";
 import { useAtom } from "jotai";
 import { getCodeVerification } from "../../../entities/differentsVal/initialSettings";
+import { useRouter } from "expo-router";
 
-export default function Welcome_sheet({ name = "" }) {
+export default function Welcome_sheet() {
   const [getCodeVerif] = useAtom(getCodeVerification);
   console.log("Welcom_view_getCodeVerif: ", getCodeVerif);
+  // const router = useRouter();
+  // router.replace();
   return (
     <View style={styles.content}>
       <Text style={styles.content_txt_1}>Добрый вечер</Text>
       <Text style={styles.content_txt_2}>
         {getCodeVerif.inputAuthData["Ваше Имя:"]} !
       </Text>
-      {/* <Text style={styles.content_txt_2}>{name} !</Text> */}
       <Image
         style={styles.img}
         source={require("../../../assets/welcom_IMG_2.png")}

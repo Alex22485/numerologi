@@ -31,7 +31,7 @@ export default function Module_customKeyBoard_ver2({ onChangeColorQuickCode }) {
 
   const [initSt] = useAtom(ini);
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
-  console.log("Module_customKeyBoard_ver2: ", getCodeVerif);
+  console.log("1", getCodeVerif);
 
   const textBtn = getCodeVerif.localStorageCode ? "Выйти из акаунта" : "";
 

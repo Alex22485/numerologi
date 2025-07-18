@@ -1,12 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default async function storeDataWrite(key, value) {
-  // console.log("key: ", key);
-  // console.log("value: ", value);
-
+  console.log("storeDataWrite_key_value: ", key, ": ", value);
   try {
     const jsonValue = JSON.stringify(value);
-    // console.log("jsonValue: ", jsonValue);
     await AsyncStorage.setItem(key, jsonValue);
   } catch (e) {
     console.log("error save obj in local stage");
