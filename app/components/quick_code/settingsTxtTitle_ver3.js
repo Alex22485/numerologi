@@ -1,7 +1,6 @@
 import { Color } from "../../../components/tokens";
 
 export default function settingsTxtTitle_ver3(quickCode, textContent) {
-  console.log("textContent: ", textContent);
   const result = quickCode.errorCode
     ? [Color.error, "Ошибка, повторите снова "]
     : textContent

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Vibration, View } from "react-native";
 import { heightWindow, widthWindow } from "../components/tokens";
 import TextInputItem from "./components/auth/textInputItem";
 import storeDataObjGet from "./components/quick_code/storeDataObjGet";
@@ -14,8 +14,6 @@ export default function Auth_form_Universal({
   onGoToWelcomSheet,
 }) {
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
-  console.log("Auth_form_Universal_getCodeVerif: ", getCodeVerif);
-
   // Преобразование массива в объект
   const includeFormObj = includeForm.reduce((object, value) => {
     return { ...object, [value]: "" };
@@ -23,7 +21,6 @@ export default function Auth_form_Universal({
   //! Вводимые данные в форму
   const [valueForm, setValueForm] = useState(includeFormObj);
   const [compairPassword, setCompairPassword] = useState("");
-  console.log("compairPassword: ", compairPassword);
 
   const [dataError, setDataError] = useState({ isError: false, textError: "" });
 
@@ -47,12 +44,14 @@ export default function Auth_form_Universal({
       onGoToWelcomSheet();
     }
     if (compairPassword.code === "notAuth") {
+      Vibration.vibrate(400);
       setDataError((pr) => {
         return { ...pr, isError: true, textError: "notAuth" };
       });
     }
     // сравнение введенного кода НЕверно, не верный пароль
     if (compairPassword.code === "errorPassword") {
+      Vibration.vibrate(400);
       setDataError((pr) => {
         return { ...pr, isError: true, textError: "errorPassword" };
       });

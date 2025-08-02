@@ -10,11 +10,10 @@ import { getCodeVerification } from "../entities/differentsVal/initialSettings";
 
 export default function Auth() {
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
-  console.log("Auth_getCodeVerif: ", getCodeVerif);
+  console.log("getCodeVerif: ", getCodeVerif);
 
   // !!!проверка при запуске есть ли в localStorage quickCode
   useEffect(() => {
-    console.log("Auth_useEffect");
     async function uuu() {
       const dataUserAndQuickCode = await storeDataGet("code");
       dataUserAndQuickCode[0]["Ваше Имя:"]

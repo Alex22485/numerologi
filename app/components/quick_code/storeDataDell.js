@@ -8,6 +8,5 @@ export default async function storeDataDell(value) {
   } catch (e) {
     // remove error
   }
-  // OnInputWithMainPassword();
   console.log("Done.");
 }

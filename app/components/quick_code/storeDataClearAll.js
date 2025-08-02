@@ -5,7 +5,6 @@ export default async function storeDataClearAll() {
   try {
     await AsyncStorage.clear();
   } catch (e) {
-    // saving error
     console.log("ошибка записи в кода", e);
   }
 }

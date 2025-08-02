@@ -13,7 +13,10 @@ import {
 } from "../../../entities/differentsVal/initialSettings";
 import storeDataDell from "./storeDataDell";
 
-export default function Module_customKeyBoard_ver2({ onChangeColorQuickCode }) {
+export default function Module_customKeyBoard_ver2({
+  onChangeColorQuickCode,
+  cointFirst,
+}) {
   const btnContent = [
     { key: 1, text: "1" },
     { key: 2, text: "2" },
@@ -31,33 +34,41 @@ export default function Module_customKeyBoard_ver2({ onChangeColorQuickCode }) {
 
   const [initSt] = useAtom(ini);
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
-  console.log("1", getCodeVerif);
 
   const textBtn = getCodeVerif.localStorageCode ? "Выйти из акаунта" : "";
 
-  // const proba = { ...initSt, inputAuthData: getCodeVerif.inputAuthData };
-  // console.log("proba: ", proba);
+  // стили кнопок клавиатуры
+  const disable_BGC_txt = (item, txtBtn) => {
+    // отображение кнопки dell
+    const dellBtnNotShow =
+      txtBtn === "dell" && (cointFirst === 0 || cointFirst === 4)
+        ? true
+        : false;
 
-  const disable_and_backGrColor = (item) => {
-    return item === 10 ? [BgColor.bg_white, true] : [BgColor.bg_pink, false];
+    return item === 10 || dellBtnNotShow
+      ? [BgColor.bg_white, true, ""]
+      : [BgColor.bg_pink, false, txtBtn];
   };
   return (
     <View style={styles.content}>
       <View style={styles.content_digits}>
         {btnContent.map((item) => {
+          const styleKeyboardBtn = disable_BGC_txt(item.key, item.text);
           return (
             <TouchableOpacity
               key={item.key}
-              disabled={disable_and_backGrColor(item.key)[1]}
+              disabled={styleKeyboardBtn[1]}
               style={{
                 ...styles.content_item,
-                backgroundColor: disable_and_backGrColor(item.key)[0],
+                backgroundColor: styleKeyboardBtn[0],
               }}
               onPress={() => {
                 onChangeColorQuickCode(item.text);
               }}
             >
-              <Text style={styles.content_item_Text}>{item.text}</Text>
+              <Text style={styles.content_item_Text}>
+                {styleKeyboardBtn[2]}
+              </Text>
             </TouchableOpacity>
           );
         })}
@@ -72,7 +83,6 @@ export default function Module_customKeyBoard_ver2({ onChangeColorQuickCode }) {
             setGetCodeVerif(() => {
               return { ...initSt, inputAuthData: getCodeVerif.inputAuthData };
             });
-            // setGetCodeVerif(initSt);
           }}
         >
           <Text>{textBtn}</Text>

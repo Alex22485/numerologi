@@ -17,7 +17,6 @@ export default function BnPart2({ textUnderBtn }) {
             // router.navigate("/components/signInView/signInView");
             //! кнопка "назад" сворачивает приложение
             router.replace("/components/signInView/signInView");
-            // router.navigate("/app/components/signInView/signInView");
           } else {
             console.log("зыбыл пароль");
           }

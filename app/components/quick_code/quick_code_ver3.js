@@ -17,7 +17,6 @@ import { getCodeVerification } from "../../../entities/differentsVal/initialSett
 
 export default function Quick_code_ver3() {
   const [getCodeVerif, setGetCodeVerif] = useAtom(getCodeVerification);
-  console.log("Quick_code_ver3_getCodeVerif: ", getCodeVerif);
   const qCode = {
     qCodeFirst: "",
     cointFirst: 0,
@@ -71,17 +70,20 @@ export default function Quick_code_ver3() {
         errorCode: true,
         localStorage: getCodeVerif.localStorageCode.code ? 4 : "",
       };
-      // return {
-      //   ...qCode,
-      //   qCodeFirst: getCodeVerif.localStorageCode.code,
-      //   cointFirst: getCodeVerif.localStorageCode.code ? 4 : "",
-      //   errorCode: true,
-      //   localStorage: getCodeVerif.localStorageCode.code,
-      // };
     });
   }
 
   const changeColorQuickCode = (code) => {
+    if (code === "dell") {
+      console.log("code: ", code);
+      // setQuickCode((pr)=>{
+      //   return{
+      //     ...pr,
+
+      //   }
+      // })
+      return;
+    }
     setQuickCode((pr) => {
       return {
         ...pr,
@@ -117,6 +119,7 @@ export default function Quick_code_ver3() {
       <Module_quickCodeInput_ver2 quickCode={quickCode} />
       <Module_customKeyBoard_ver2
         onChangeColorQuickCode={changeColorQuickCode}
+        cointFirst={quickCode.cointFirst}
       />
     </View>
   );

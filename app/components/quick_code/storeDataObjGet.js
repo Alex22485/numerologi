@@ -6,7 +6,6 @@ export default async function storeDataObjGet(inputData, setState) {
 
     if (value != null) {
       const valueParse = JSON.parse(value);
-      console.log("valueParse: ", valueParse);
 
       // сравнение введенного пароль и записанного в "БД" (фиктивную)
       const passwordOriginal = valueParse["Пароль:"];
@@ -14,7 +13,6 @@ export default async function storeDataObjGet(inputData, setState) {
 
       if (passwordOriginal === passwordInputcurrent) {
         setState({ userDataFromServer: valueParse, code: "succssess" });
-        // setState({ ...valueParse, code: "succssess" });
       } else {
         setState({ code: "errorPassword" });
       }
